@@ -22,10 +22,10 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead | Prajwal Kumar Yadav | 2501010339 | | prajwal9519 |
+| Member 2 | Snehaashish Sahoo | 2501010612 | Snehaashish777 |
+| Member 3 | Ayush Jyala | 2501010543 | ayushjyala |
+
 
 **Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
 
