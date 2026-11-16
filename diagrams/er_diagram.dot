@@ -1,0 +1,26 @@
+digraph ER {
+ graph [rankdir=LR, splines=ortho, nodesep=0.55, ranksep=0.95, bgcolor="white", pad="0.25", fontname="Helvetica", labelloc="t", label="UBER RIDE-HAILING DATABASE — CP1 ER DIAGRAM", fontsize=20];
+ node [shape=plain, fontname="Helvetica"];
+ edge [fontname="Helvetica", fontsize=10, color="#52627A", penwidth=1.2, arrowsize=0.8];
+ cities [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6"><TR><TD BGCOLOR="#1D4E89"><FONT COLOR="white"><B>CITIES</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><B>PK</B> city_id</TD></TR><TR><TD ALIGN="LEFT">city_name (UQ), state</TD></TR><TR><TD ALIGN="LEFT">base_fare, per_km_rate</TD></TR><TR><TD ALIGN="LEFT">per_min_rate, launched_on</TD></TR></TABLE>>];
+ riders [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6"><TR><TD BGCOLOR="#287271"><FONT COLOR="white"><B>RIDERS</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><B>PK</B> rider_id</TD></TR><TR><TD ALIGN="LEFT">full_name, email (UQ), phone (UQ)</TD></TR><TR><TD ALIGN="LEFT"><B>FK</B> home_city_id</TD></TR><TR><TD ALIGN="LEFT">signup_date, rider_rating, is_active</TD></TR></TABLE>>];
+ drivers [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6"><TR><TD BGCOLOR="#287271"><FONT COLOR="white"><B>DRIVERS</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><B>PK</B> driver_id</TD></TR><TR><TD ALIGN="LEFT">full_name, phone (UQ), license_no (UQ)</TD></TR><TR><TD ALIGN="LEFT"><B>FK</B> city_id</TD></TR><TR><TD ALIGN="LEFT">joined_on, driver_rating, status</TD></TR></TABLE>>];
+ vehicles [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6"><TR><TD BGCOLOR="#287271"><FONT COLOR="white"><B>VEHICLES</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><B>PK</B> vehicle_id</TD></TR><TR><TD ALIGN="LEFT"><B>FK</B> driver_id</TD></TR><TR><TD ALIGN="LEFT">registration_no (UQ), make, model</TD></TR><TR><TD ALIGN="LEFT">manufacture_year, vehicle_type, seat_capacity</TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">UQ (vehicle_id, driver_id) for trip ownership check</FONT></TD></TR></TABLE>>];
+ promos [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6"><TR><TD BGCOLOR="#8A5A44"><FONT COLOR="white"><B>PROMO_CODES</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><B>PK</B> promo_code</TD></TR><TR><TD ALIGN="LEFT">discount_pct, max_discount</TD></TR><TR><TD ALIGN="LEFT">valid_from, valid_to, is_active</TD></TR></TABLE>>];
+ trips [label=< <TABLE BORDER="2" COLOR="#1D4E89" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6"><TR><TD BGCOLOR="#1D4E89"><FONT COLOR="white"><B>TRIPS — CENTRAL TABLE</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><B>PK</B> trip_id</TD></TR><TR><TD ALIGN="LEFT"><B>FK</B> rider_id, driver_id, vehicle_id, city_id</TD></TR><TR><TD ALIGN="LEFT"><B>FK</B> promo_code</TD></TR><TR><TD ALIGN="LEFT">requested_at, pickup_at, dropoff_at</TD></TR><TR><TD ALIGN="LEFT">pickup/drop coordinates</TD></TR><TR><TD ALIGN="LEFT">distance_km, duration_min, surge_multiplier</TD></TR><TR><TD ALIGN="LEFT">fare_amount, status</TD></TR></TABLE>>];
+ payments [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6"><TR><TD BGCOLOR="#8A5A44"><FONT COLOR="white"><B>PAYMENTS</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><B>PK</B> payment_id</TD></TR><TR><TD ALIGN="LEFT"><B>FK, UQ</B> trip_id</TD></TR><TR><TD ALIGN="LEFT">amount, method, payment_status</TD></TR><TR><TD ALIGN="LEFT">paid_at</TD></TR></TABLE>>];
+ ratings [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6"><TR><TD BGCOLOR="#8A5A44"><FONT COLOR="white"><B>RATINGS</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><B>PK, FK</B> trip_id</TD></TR><TR><TD ALIGN="LEFT"><B>PK</B> rated_by</TD></TR><TR><TD ALIGN="LEFT">stars, comment, created_at</TD></TR></TABLE>>];
+ cities -> riders [label="1 : N"];
+ cities -> drivers [label="1 : N"];
+ cities -> trips [label="1 : N"];
+ drivers -> vehicles [label="1 : N"];
+ riders -> trips [label="1 : N"];
+ drivers -> trips [label="1 : N (optional on trip)"];
+ vehicles -> trips [label="1 : N (optional on trip)"];
+ promos -> trips [label="1 : N (optional on trip)"];
+ trips -> payments [label="1 : 0..1"];
+ trips -> ratings [label="1 : 0..2"];
+ {rank=same; cities; promos}
+ {rank=same; riders; drivers; vehicles}
+ {rank=same; payments; ratings}
+}

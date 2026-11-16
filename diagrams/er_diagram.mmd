@@ -1,0 +1,11 @@
+erDiagram
+    CITIES ||--o{ RIDERS : home_city
+    CITIES ||--o{ DRIVERS : registered_city
+    CITIES ||--o{ TRIPS : trip_city
+    DRIVERS ||--o{ VEHICLES : registers
+    RIDERS ||--o{ TRIPS : requests
+    DRIVERS o|--o{ TRIPS : assigned_driver
+    VEHICLES o|--o{ TRIPS : assigned_vehicle
+    PROMO_CODES o|--o{ TRIPS : applied_to
+    TRIPS ||--o| PAYMENTS : payment
+    TRIPS ||--o{ RATINGS : receives
