@@ -1,0 +1,36 @@
+=== W04 run 1 ===
+Insert on trips  (cost=0.00..137.50 rows=0 width=0) (actual time=7.771..7.771 rows=0.00 loops=1)
+  Buffers: shared hit=20067 dirtied=67 written=67
+  ->  Function Scan on generate_series g  (cost=0.00..137.50 rows=5000 width=270) (actual time=0.125..0.687 rows=5000.00 loops=1)
+Planning Time: 0.058 ms
+Trigger for constraint fk_trips_rider: time=11.340 calls=5000
+Trigger for constraint fk_trips_driver: time=1.069 calls=5000
+Trigger for constraint fk_trips_vehicle: time=1.078 calls=5000
+Trigger for constraint fk_trips_city: time=8.860 calls=5000
+Trigger for constraint fk_trips_promo: time=1.169 calls=5000
+Trigger for constraint fk_trips_vehicle_driver: time=0.989 calls=5000
+Execution Time: 33.028 ms
+=== W04 run 2 ===
+Insert on trips  (cost=0.00..137.50 rows=0 width=0) (actual time=8.017..8.017 rows=0.00 loops=1)
+  Buffers: shared hit=22989 dirtied=66 written=66
+  ->  Function Scan on generate_series g  (cost=0.00..137.50 rows=5000 width=270) (actual time=0.114..0.696 rows=5000.00 loops=1)
+Planning Time: 0.055 ms
+Trigger for constraint fk_trips_rider: time=12.018 calls=5000
+Trigger for constraint fk_trips_driver: time=1.206 calls=5000
+Trigger for constraint fk_trips_vehicle: time=1.133 calls=5000
+Trigger for constraint fk_trips_city: time=9.478 calls=5000
+Trigger for constraint fk_trips_promo: time=1.229 calls=5000
+Trigger for constraint fk_trips_vehicle_driver: time=1.153 calls=5000
+Execution Time: 35.017 ms
+=== W04 run 3 ===
+Insert on trips  (cost=0.00..137.50 rows=0 width=0) (actual time=8.183..8.184 rows=0.00 loops=1)
+  Buffers: shared hit=22907 dirtied=67 written=67
+  ->  Function Scan on generate_series g  (cost=0.00..137.50 rows=5000 width=270) (actual time=0.120..0.704 rows=5000.00 loops=1)
+Planning Time: 0.058 ms
+Trigger for constraint fk_trips_rider: time=11.541 calls=5000
+Trigger for constraint fk_trips_driver: time=1.102 calls=5000
+Trigger for constraint fk_trips_vehicle: time=1.107 calls=5000
+Trigger for constraint fk_trips_city: time=9.238 calls=5000
+Trigger for constraint fk_trips_promo: time=1.228 calls=5000
+Trigger for constraint fk_trips_vehicle_driver: time=1.007 calls=5000
+Execution Time: 34.165 ms

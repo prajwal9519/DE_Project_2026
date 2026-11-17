@@ -1,0 +1,42 @@
+=== R10 run 1 ===
+Seq Scan on drivers d  (cost=9662.00..9744.00 rows=1354 width=20) (actual time=12.374..12.374 rows=0.00 loops=1)
+  Filter: ((NOT (ANY (driver_id = (hashed SubPlan 1).col1))) AND ((status)::text = 'ACTIVE'::text))
+  Rows Removed by Filter: 3000
+  Buffers: shared hit=5832
+  SubPlan 1
+    ->  Seq Scan on trips t  (cost=0.00..9653.54 rows=3383 width=4) (actual time=11.623..11.947 rows=3296.00 loops=1)
+          Filter: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+          Rows Removed by Filter: 296704
+          Buffers: shared hit=5795
+Planning:
+  Buffers: shared hit=128
+Planning Time: 0.266 ms
+Execution Time: 12.403 ms
+=== R10 run 2 ===
+Seq Scan on drivers d  (cost=9662.00..9744.00 rows=1354 width=20) (actual time=11.829..11.829 rows=0.00 loops=1)
+  Filter: ((NOT (ANY (driver_id = (hashed SubPlan 1).col1))) AND ((status)::text = 'ACTIVE'::text))
+  Rows Removed by Filter: 3000
+  Buffers: shared hit=5832
+  SubPlan 1
+    ->  Seq Scan on trips t  (cost=0.00..9653.54 rows=3383 width=4) (actual time=11.085..11.404 rows=3296.00 loops=1)
+          Filter: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+          Rows Removed by Filter: 296704
+          Buffers: shared hit=5795
+Planning:
+  Buffers: shared hit=128
+Planning Time: 0.256 ms
+Execution Time: 11.855 ms
+=== R10 run 3 ===
+Seq Scan on drivers d  (cost=9662.00..9744.00 rows=1354 width=20) (actual time=11.615..11.615 rows=0.00 loops=1)
+  Filter: ((NOT (ANY (driver_id = (hashed SubPlan 1).col1))) AND ((status)::text = 'ACTIVE'::text))
+  Rows Removed by Filter: 3000
+  Buffers: shared hit=5832
+  SubPlan 1
+    ->  Seq Scan on trips t  (cost=0.00..9653.54 rows=3383 width=4) (actual time=10.878..11.193 rows=3296.00 loops=1)
+          Filter: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+          Rows Removed by Filter: 296704
+          Buffers: shared hit=5795
+Planning:
+  Buffers: shared hit=128
+Planning Time: 0.254 ms
+Execution Time: 11.645 ms

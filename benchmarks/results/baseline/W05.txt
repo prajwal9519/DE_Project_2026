@@ -1,0 +1,39 @@
+=== W05 run 1 ===
+Delete on trips  (cost=0.00..10785.04 rows=0 width=0) (actual time=22.407..22.407 rows=0.00 loops=1)
+  Buffers: shared hit=12330
+  ->  Seq Scan on trips  (cost=0.00..10785.04 rows=3249 width=6) (actual time=0.008..21.612 rows=3165.00 loops=1)
+        Filter: (((status)::text ~~ 'CANCELLED%'::text) AND (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone))
+        Rows Removed by Filter: 296835
+        Buffers: shared hit=5995
+Planning:
+  Buffers: shared hit=60
+Planning Time: 0.149 ms
+Trigger for constraint fk_payments_trip: time=5.684 calls=3165
+Trigger for constraint fk_ratings_trip: time=5.167 calls=3165
+Execution Time: 33.476 ms
+=== W05 run 2 ===
+Delete on trips  (cost=0.00..10785.04 rows=0 width=0) (actual time=23.465..23.465 rows=0.00 loops=1)
+  Buffers: shared hit=12330
+  ->  Seq Scan on trips  (cost=0.00..10785.04 rows=3249 width=6) (actual time=0.010..22.645 rows=3165.00 loops=1)
+        Filter: (((status)::text ~~ 'CANCELLED%'::text) AND (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone))
+        Rows Removed by Filter: 296835
+        Buffers: shared hit=5995
+Planning:
+  Buffers: shared hit=60
+Planning Time: 0.138 ms
+Trigger for constraint fk_payments_trip: time=5.711 calls=3165
+Trigger for constraint fk_ratings_trip: time=5.209 calls=3165
+Execution Time: 34.588 ms
+=== W05 run 3 ===
+Delete on trips  (cost=0.00..10785.04 rows=0 width=0) (actual time=23.055..23.055 rows=0.00 loops=1)
+  Buffers: shared hit=12330
+  ->  Seq Scan on trips  (cost=0.00..10785.04 rows=3249 width=6) (actual time=0.011..22.275 rows=3165.00 loops=1)
+        Filter: (((status)::text ~~ 'CANCELLED%'::text) AND (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone))
+        Rows Removed by Filter: 296835
+        Buffers: shared hit=5995
+Planning:
+  Buffers: shared hit=60
+Planning Time: 0.251 ms
+Trigger for constraint fk_payments_trip: time=6.020 calls=3165
+Trigger for constraint fk_ratings_trip: time=5.389 calls=3165
+Execution Time: 34.720 ms

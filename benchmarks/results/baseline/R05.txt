@@ -1,0 +1,63 @@
+=== R05 run 1 ===
+Limit  (cost=8567.64..8573.46 rows=50 width=27) (actual time=11.051..11.873 rows=50.00 loops=1)
+  Buffers: shared hit=5877
+  ->  Gather Merge  (cost=8567.64..8602.35 rows=298 width=27) (actual time=11.050..11.849 rows=50.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=5877
+        ->  Sort  (cost=7567.62..7567.93 rows=124 width=27) (actual time=8.999..9.000 rows=33.67 loops=3)
+              Sort Key: requested_at
+              Sort Method: top-N heapsort  Memory: 28kB
+              Buffers: shared hit=5877
+              Worker 0:  Sort Method: quicksort  Memory: 29kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 28kB
+              ->  Parallel Seq Scan on trips  (cost=0.00..7563.50 rows=124 width=27) (actual time=8.877..8.970 rows=100.00 loops=3)
+                    Filter: ((status)::text = ANY ('{REQUESTED,ACCEPTED,ONGOING}'::text[]))
+                    Rows Removed by Filter: 99900
+                    Buffers: shared hit=5801
+Planning:
+  Buffers: shared hit=144
+Planning Time: 0.192 ms
+Execution Time: 11.890 ms
+=== R05 run 2 ===
+Limit  (cost=8567.64..8573.46 rows=50 width=27) (actual time=11.443..12.330 rows=50.00 loops=1)
+  Buffers: shared hit=5877
+  ->  Gather Merge  (cost=8567.64..8602.35 rows=298 width=27) (actual time=11.443..12.327 rows=50.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=5877
+        ->  Sort  (cost=7567.62..7567.93 rows=124 width=27) (actual time=9.319..9.327 rows=50.00 loops=3)
+              Sort Key: requested_at
+              Sort Method: quicksort  Memory: 29kB
+              Buffers: shared hit=5877
+              Worker 0:  Sort Method: top-N heapsort  Memory: 28kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 28kB
+              ->  Parallel Seq Scan on trips  (cost=0.00..7563.50 rows=124 width=27) (actual time=9.205..9.293 rows=100.00 loops=3)
+                    Filter: ((status)::text = ANY ('{REQUESTED,ACCEPTED,ONGOING}'::text[]))
+                    Rows Removed by Filter: 99900
+                    Buffers: shared hit=5801
+Planning:
+  Buffers: shared hit=144
+Planning Time: 0.190 ms
+Execution Time: 12.346 ms
+=== R05 run 3 ===
+Limit  (cost=8567.64..8573.46 rows=50 width=27) (actual time=10.810..11.683 rows=50.00 loops=1)
+  Buffers: shared hit=5877
+  ->  Gather Merge  (cost=8567.64..8602.35 rows=298 width=27) (actual time=10.810..11.657 rows=50.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=5877
+        ->  Sort  (cost=7567.62..7567.93 rows=124 width=27) (actual time=9.112..9.112 rows=33.67 loops=3)
+              Sort Key: requested_at
+              Sort Method: top-N heapsort  Memory: 28kB
+              Buffers: shared hit=5877
+              Worker 0:  Sort Method: quicksort  Memory: 29kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 28kB
+              ->  Parallel Seq Scan on trips  (cost=0.00..7563.50 rows=124 width=27) (actual time=8.993..9.086 rows=100.00 loops=3)
+                    Filter: ((status)::text = ANY ('{REQUESTED,ACCEPTED,ONGOING}'::text[]))
+                    Rows Removed by Filter: 99900
+                    Buffers: shared hit=5801
+Planning:
+  Buffers: shared hit=144
+Planning Time: 0.174 ms
+Execution Time: 11.713 ms
