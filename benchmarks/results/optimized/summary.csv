@@ -1,0 +1,31 @@
+query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes
+R01,READ,0.142,0.066,0.066,0.294,Bitmap Heap Scan on trips | Bitmap Index Scan on idx_trips_rider_requested_desc
+R02,READ,0.124,0.082,0.061,0.230,Index Only Scan using idx_trips_driver_requested_cover on trips
+R03,READ,0.141,0.027,0.026,0.370,Index Scan using idx_riders_lower_email on riders
+R04,READ,0.082,0.082,0.075,0.088,Seq Scan on cities | Index Only Scan using idx_trips_city_requested_cover on trips
+R05,READ,0.163,0.051,0.048,0.390,Index Only Scan using idx_trips_dispatch_requested on trips
+R06,READ,2.357,2.361,2.318,2.392,Index Only Scan using idx_trips_completed_requested_cover on trips | Seq Scan on cities
+R07,READ,3.967,2.208,2.205,7.488,Seq Scan on cities | Bitmap Heap Scan on drivers | Bitmap Index Scan on idx_drivers_city_driver | Index Only Scan using idx_trips_driver_requested_cover on trips
+R08,READ,23.396,22.848,21.155,26.184,Index Only Scan using idx_payments_success_paid_at on payments
+R09,READ,4.071,3.848,3.822,4.542,Index Only Scan using idx_trips_requested_city_rider on trips | Index Only Scan using idx_riders_home_city_cover on riders
+R10,READ,1.269,0.942,0.795,2.071,Index Scan using idx_trips_requested_city_rider on trips | Seq Scan on drivers
+R11,READ,33.164,30.173,29.434,39.884,Seq Scan on trips | Index Only Scan using idx_ratings_rider_trip_cover on ratings
+R12,READ,14.076,13.148,12.496,16.585,Seq Scan on cities | Index Only Scan using idx_trips_city_requested_cover on trips
+R13,READ,0.925,0.882,0.867,1.026,Bitmap Heap Scan on riders | Bitmap Index Scan on idx_riders_full_name_trgm
+R14,READ,0.217,0.034,0.032,0.586,Index Scan using vehicles_registration_no_key on vehicles | Index Scan using drivers_pkey on drivers
+R15,READ,0.441,0.054,0.050,1.219,Index Scan using idx_trips_admin_page_cover on trips | Index Scan using riders_pkey on riders | Index Scan using drivers_pkey on drivers | Index Scan using uq_vehicles_vehicle_driver on vehicles | Index Scan using payments_trip_id_key on payments
+R16,READ,24.016,22.970,20.000,29.077,Index Scan using trips_pkey on trips
+R17,READ,24.779,24.656,24.437,25.244,Seq Scan on trips | Seq Scan on cities
+R18,READ,2.985,2.866,2.817,3.272,Index Only Scan using idx_riders_home_city_cover on riders | Index Only Scan using idx_trips_rider_requested_desc on trips
+R19,READ,3.168,3.090,3.057,3.358,Index Only Scan using idx_trips_completed_requested_cover on trips | Seq Scan on drivers
+R20,READ,2.166,2.152,2.131,2.216,Index Only Scan using idx_trips_completed_requested_cover on trips
+R21,READ,8.171,7.885,7.284,9.345,Index Scan using promo_codes_pkey on promo_codes | Index Scan using idx_trips_promo_code on trips
+R22,READ,1.020,0.294,0.271,2.496,Index Only Scan using idx_payments_failed_paid_at on payments | Index Only Scan using idx_trips_admin_page_cover on trips | Index Scan using riders_pkey on riders
+R23,READ,38.084,38.365,37.021,38.867,Index Only Scan using idx_trips_requested_city_rider on trips
+R24,READ,0.054,0.049,0.047,0.067,Index Only Scan using idx_trips_long_completed_fare on trips
+R25,READ,16.766,16.309,16.274,17.716,Seq Scan on trips
+W01,WRITE,1.204,0.904,0.797,1.911,(no scan)
+W02,WRITE,0.526,0.264,0.257,1.058,Index Only Scan using idx_trips_ongoing_trip_id on trips | Index Scan using idx_trips_admin_page_cover on trips
+W03,WRITE,3.656,2.771,2.771,5.426,Bitmap Heap Scan on drivers | Bitmap Index Scan on idx_drivers_active_rating
+W04,WRITE,61.861,59.658,54.230,71.695,(no scan)
+W05,WRITE,12.146,12.493,10.570,13.375,Index Scan using idx_trips_cancelled_requested on trips

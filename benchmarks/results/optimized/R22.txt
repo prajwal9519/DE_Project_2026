@@ -1,0 +1,69 @@
+=== R22 run 1 ===
+Nested Loop  (cost=0.99..496.22 rows=104 width=33) (actual time=0.227..2.477 rows=97.00 loops=1)
+  Buffers: shared hit=503 read=83
+  ->  Nested Loop  (cost=0.71..463.87 rows=104 width=22) (actual time=0.215..0.384 rows=97.00 loops=1)
+        Buffers: shared hit=264 read=31
+        ->  Index Only Scan using idx_payments_failed_paid_at on payments p  (cost=0.29..10.11 rows=104 width=22) (actual time=0.205..0.210 rows=97.00 loops=1)
+              Index Cond: (paid_at >= '2026-06-24 00:00:00+05:30'::timestamp with time zone)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using idx_trips_admin_page_cover on trips t  (cost=0.42..4.36 rows=1 width=8) (actual time=0.002..0.002 rows=1.00 loops=97)
+              Index Cond: (trip_id = p.trip_id)
+              Heap Fetches: 0
+              Index Searches: 97
+              Buffers: shared hit=263 read=29
+  ->  Index Scan using riders_pkey on riders r  (cost=0.29..0.31 rows=1 width=15) (actual time=0.021..0.021 rows=1.00 loops=97)
+        Index Cond: (rider_id = t.rider_id)
+        Index Searches: 97
+        Buffers: shared hit=239 read=52
+Planning:
+  Buffers: shared hit=713 read=3
+Planning Time: 2.251 ms
+Execution Time: 2.496 ms
+=== R22 run 2 ===
+Nested Loop  (cost=0.99..496.22 rows=104 width=33) (actual time=0.013..0.254 rows=97.00 loops=1)
+  Buffers: shared hit=586
+  ->  Nested Loop  (cost=0.71..463.87 rows=104 width=22) (actual time=0.008..0.094 rows=97.00 loops=1)
+        Buffers: shared hit=295
+        ->  Index Only Scan using idx_payments_failed_paid_at on payments p  (cost=0.29..10.11 rows=104 width=22) (actual time=0.004..0.006 rows=97.00 loops=1)
+              Index Cond: (paid_at >= '2026-06-24 00:00:00+05:30'::timestamp with time zone)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using idx_trips_admin_page_cover on trips t  (cost=0.42..4.36 rows=1 width=8) (actual time=0.001..0.001 rows=1.00 loops=97)
+              Index Cond: (trip_id = p.trip_id)
+              Heap Fetches: 0
+              Index Searches: 97
+              Buffers: shared hit=292
+  ->  Index Scan using riders_pkey on riders r  (cost=0.29..0.31 rows=1 width=15) (actual time=0.002..0.002 rows=1.00 loops=97)
+        Index Cond: (rider_id = t.rider_id)
+        Index Searches: 97
+        Buffers: shared hit=291
+Planning:
+  Buffers: shared hit=716
+Planning Time: 1.039 ms
+Execution Time: 0.271 ms
+=== R22 run 3 ===
+Nested Loop  (cost=0.99..496.22 rows=104 width=33) (actual time=0.012..0.277 rows=97.00 loops=1)
+  Buffers: shared hit=586
+  ->  Nested Loop  (cost=0.71..463.87 rows=104 width=22) (actual time=0.007..0.096 rows=97.00 loops=1)
+        Buffers: shared hit=295
+        ->  Index Only Scan using idx_payments_failed_paid_at on payments p  (cost=0.29..10.11 rows=104 width=22) (actual time=0.003..0.006 rows=97.00 loops=1)
+              Index Cond: (paid_at >= '2026-06-24 00:00:00+05:30'::timestamp with time zone)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using idx_trips_admin_page_cover on trips t  (cost=0.42..4.36 rows=1 width=8) (actual time=0.001..0.001 rows=1.00 loops=97)
+              Index Cond: (trip_id = p.trip_id)
+              Heap Fetches: 0
+              Index Searches: 97
+              Buffers: shared hit=292
+  ->  Index Scan using riders_pkey on riders r  (cost=0.29..0.31 rows=1 width=15) (actual time=0.002..0.002 rows=1.00 loops=97)
+        Index Cond: (rider_id = t.rider_id)
+        Index Searches: 97
+        Buffers: shared hit=291
+Planning:
+  Buffers: shared hit=716
+Planning Time: 0.961 ms
+Execution Time: 0.294 ms

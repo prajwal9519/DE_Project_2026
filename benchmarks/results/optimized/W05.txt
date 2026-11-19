@@ -1,0 +1,42 @@
+=== W05 run 1 ===
+Delete on trips  (cost=0.29..171.24 rows=0 width=0) (actual time=1.709..1.709 rows=0.00 loops=1)
+  Buffers: shared hit=6942
+  ->  Index Scan using idx_trips_cancelled_requested on trips  (cost=0.29..171.24 rows=3281 width=6) (actual time=0.017..0.693 rows=3165.00 loops=1)
+        Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: ((status)::text = ANY ('{CANCELLED_BY_RIDER,CANCELLED_BY_DRIVER}'::text[]))
+        Index Searches: 1
+        Buffers: shared hit=329
+Planning:
+  Buffers: shared hit=408
+Planning Time: 0.651 ms
+Trigger for constraint fk_payments_trip: time=5.247 calls=3165
+Trigger for constraint fk_ratings_trip: time=5.344 calls=3165
+Execution Time: 12.493 ms
+=== W05 run 2 ===
+Delete on trips  (cost=0.29..171.24 rows=0 width=0) (actual time=1.395..1.395 rows=0.00 loops=1)
+  Buffers: shared hit=6664
+  ->  Index Scan using idx_trips_cancelled_requested on trips  (cost=0.29..171.24 rows=3281 width=6) (actual time=0.013..0.704 rows=3165.00 loops=1)
+        Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: ((status)::text = ANY ('{CANCELLED_BY_RIDER,CANCELLED_BY_DRIVER}'::text[]))
+        Index Searches: 1
+        Buffers: shared hit=329
+Planning:
+  Buffers: shared hit=408
+Planning Time: 0.563 ms
+Trigger for constraint fk_payments_trip: time=4.481 calls=3165
+Trigger for constraint fk_ratings_trip: time=4.521 calls=3165
+Execution Time: 10.570 ms
+=== W05 run 3 ===
+Delete on trips  (cost=0.29..171.24 rows=0 width=0) (actual time=1.411..1.412 rows=0.00 loops=1)
+  Buffers: shared hit=6664
+  ->  Index Scan using idx_trips_cancelled_requested on trips  (cost=0.29..171.24 rows=3281 width=6) (actual time=0.013..0.727 rows=3165.00 loops=1)
+        Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: ((status)::text = ANY ('{CANCELLED_BY_RIDER,CANCELLED_BY_DRIVER}'::text[]))
+        Index Searches: 1
+        Buffers: shared hit=329
+Planning:
+  Buffers: shared hit=408
+Planning Time: 0.584 ms
+Trigger for constraint fk_payments_trip: time=5.267 calls=3165
+Trigger for constraint fk_ratings_trip: time=6.494 calls=3165
+Execution Time: 13.375 ms

@@ -1,0 +1,114 @@
+=== R07 run 1 ===
+Limit  (cost=1185.35..1185.38 rows=10 width=56) (actual time=7.436..7.438 rows=10.00 loops=1)
+  Buffers: shared hit=993 read=553
+  ->  Sort  (cost=1185.35..1192.85 rows=3000 width=56) (actual time=7.436..7.436 rows=10.00 loops=1)
+        Sort Key: (sum(t.fare_amount)) DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=993 read=553
+        ->  HashAggregate  (cost=1083.03..1120.53 rows=3000 width=56) (actual time=7.310..7.375 rows=480.00 loops=1)
+              Group Key: d.driver_id
+              Batches: 1  Memory Usage: 369kB
+              Buffers: shared hit=990 read=553
+              ->  Nested Loop  (cost=11.03..1052.83 rows=4026 width=22) (actual time=0.484..6.730 rows=6597.00 loops=1)
+                    Buffers: shared hit=990 read=553
+                    ->  Nested Loop  (cost=10.60..55.48 rows=300 width=16) (actual time=0.475..0.570 rows=480.00 loops=1)
+                          Buffers: shared hit=38 read=3
+                          ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.003..0.004 rows=1.00 loops=1)
+                                Filter: ((city_name)::text = 'Mumbai'::text)
+                                Rows Removed by Filter: 9
+                                Buffers: shared hit=1
+                          ->  Bitmap Heap Scan on drivers d  (cost=10.60..51.35 rows=300 width=20) (actual time=0.472..0.539 rows=480.00 loops=1)
+                                Recheck Cond: (c.city_id = city_id)
+                                Heap Blocks: exact=37
+                                Buffers: shared hit=37 read=3
+                                ->  Bitmap Index Scan on idx_drivers_city_driver  (cost=0.00..10.53 rows=300 width=0) (actual time=0.461..0.462 rows=480.00 loops=1)
+                                      Index Cond: (city_id = c.city_id)
+                                      Index Searches: 1
+                                      Buffers: shared read=3
+                    ->  Index Only Scan using idx_trips_driver_requested_cover on trips t  (cost=0.42..3.19 rows=13 width=10) (actual time=0.010..0.012 rows=13.74 loops=480)
+                          Index Cond: ((driver_id = d.driver_id) AND (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+                          Filter: ((status)::text = 'COMPLETED'::text)
+                          Rows Removed by Filter: 2
+                          Heap Fetches: 0
+                          Index Searches: 480
+                          Buffers: shared hit=952 read=550
+Planning:
+  Buffers: shared hit=600
+Planning Time: 1.380 ms
+Execution Time: 7.488 ms
+=== R07 run 2 ===
+Limit  (cost=1185.35..1185.38 rows=10 width=56) (actual time=2.162..2.163 rows=10.00 loops=1)
+  Buffers: shared hit=1546
+  ->  Sort  (cost=1185.35..1192.85 rows=3000 width=56) (actual time=2.161..2.162 rows=10.00 loops=1)
+        Sort Key: (sum(t.fare_amount)) DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=1546
+        ->  HashAggregate  (cost=1083.03..1120.53 rows=3000 width=56) (actual time=2.052..2.107 rows=480.00 loops=1)
+              Group Key: d.driver_id
+              Batches: 1  Memory Usage: 369kB
+              Buffers: shared hit=1543
+              ->  Nested Loop  (cost=11.03..1052.83 rows=4026 width=22) (actual time=0.026..1.553 rows=6597.00 loops=1)
+                    Buffers: shared hit=1543
+                    ->  Nested Loop  (cost=10.60..55.48 rows=300 width=16) (actual time=0.021..0.090 rows=480.00 loops=1)
+                          Buffers: shared hit=41
+                          ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.002..0.003 rows=1.00 loops=1)
+                                Filter: ((city_name)::text = 'Mumbai'::text)
+                                Rows Removed by Filter: 9
+                                Buffers: shared hit=1
+                          ->  Bitmap Heap Scan on drivers d  (cost=10.60..51.35 rows=300 width=20) (actual time=0.018..0.064 rows=480.00 loops=1)
+                                Recheck Cond: (c.city_id = city_id)
+                                Heap Blocks: exact=37
+                                Buffers: shared hit=40
+                                ->  Bitmap Index Scan on idx_drivers_city_driver  (cost=0.00..10.53 rows=300 width=0) (actual time=0.012..0.013 rows=480.00 loops=1)
+                                      Index Cond: (city_id = c.city_id)
+                                      Index Searches: 1
+                                      Buffers: shared hit=3
+                    ->  Index Only Scan using idx_trips_driver_requested_cover on trips t  (cost=0.42..3.19 rows=13 width=10) (actual time=0.002..0.002 rows=13.74 loops=480)
+                          Index Cond: ((driver_id = d.driver_id) AND (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+                          Filter: ((status)::text = 'COMPLETED'::text)
+                          Rows Removed by Filter: 2
+                          Heap Fetches: 0
+                          Index Searches: 480
+                          Buffers: shared hit=1502
+Planning:
+  Buffers: shared hit=596
+Planning Time: 1.095 ms
+Execution Time: 2.205 ms
+=== R07 run 3 ===
+Limit  (cost=1185.35..1185.38 rows=10 width=56) (actual time=2.167..2.168 rows=10.00 loops=1)
+  Buffers: shared hit=1546
+  ->  Sort  (cost=1185.35..1192.85 rows=3000 width=56) (actual time=2.166..2.167 rows=10.00 loops=1)
+        Sort Key: (sum(t.fare_amount)) DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=1546
+        ->  HashAggregate  (cost=1083.03..1120.53 rows=3000 width=56) (actual time=2.056..2.108 rows=480.00 loops=1)
+              Group Key: d.driver_id
+              Batches: 1  Memory Usage: 369kB
+              Buffers: shared hit=1543
+              ->  Nested Loop  (cost=11.03..1052.83 rows=4026 width=22) (actual time=0.026..1.544 rows=6597.00 loops=1)
+                    Buffers: shared hit=1543
+                    ->  Nested Loop  (cost=10.60..55.48 rows=300 width=16) (actual time=0.022..0.093 rows=480.00 loops=1)
+                          Buffers: shared hit=41
+                          ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.002..0.003 rows=1.00 loops=1)
+                                Filter: ((city_name)::text = 'Mumbai'::text)
+                                Rows Removed by Filter: 9
+                                Buffers: shared hit=1
+                          ->  Bitmap Heap Scan on drivers d  (cost=10.60..51.35 rows=300 width=20) (actual time=0.019..0.069 rows=480.00 loops=1)
+                                Recheck Cond: (c.city_id = city_id)
+                                Heap Blocks: exact=37
+                                Buffers: shared hit=40
+                                ->  Bitmap Index Scan on idx_drivers_city_driver  (cost=0.00..10.53 rows=300 width=0) (actual time=0.012..0.013 rows=480.00 loops=1)
+                                      Index Cond: (city_id = c.city_id)
+                                      Index Searches: 1
+                                      Buffers: shared hit=3
+                    ->  Index Only Scan using idx_trips_driver_requested_cover on trips t  (cost=0.42..3.19 rows=13 width=10) (actual time=0.002..0.002 rows=13.74 loops=480)
+                          Index Cond: ((driver_id = d.driver_id) AND (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+                          Filter: ((status)::text = 'COMPLETED'::text)
+                          Rows Removed by Filter: 2
+                          Heap Fetches: 0
+                          Index Searches: 480
+                          Buffers: shared hit=1502
+Planning:
+  Buffers: shared hit=596
+Planning Time: 1.030 ms
+Execution Time: 2.208 ms

@@ -1,0 +1,42 @@
+=== R02 run 1 ===
+GroupAggregate  (cost=0.43..4.59 rows=1 width=44) (actual time=0.203..0.204 rows=1.00 loops=1)
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_trips_driver_requested_cover on trips  (cost=0.43..4.56 rows=4 width=10) (actual time=0.195..0.196 rows=5.00 loops=1)
+        Index Cond: ((driver_id = 217) AND (requested_at >= ('2026-03-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (requested_at < ('2026-04-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+        Filter: ((status)::text = 'COMPLETED'::text)
+        Rows Removed by Filter: 1
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=425
+Planning Time: 0.777 ms
+Execution Time: 0.230 ms
+=== R02 run 2 ===
+GroupAggregate  (cost=0.43..4.59 rows=1 width=44) (actual time=0.039..0.040 rows=1.00 loops=1)
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_trips_driver_requested_cover on trips  (cost=0.43..4.56 rows=4 width=10) (actual time=0.032..0.033 rows=5.00 loops=1)
+        Index Cond: ((driver_id = 217) AND (requested_at >= ('2026-03-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (requested_at < ('2026-04-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+        Filter: ((status)::text = 'COMPLETED'::text)
+        Rows Removed by Filter: 1
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=425
+Planning Time: 0.655 ms
+Execution Time: 0.061 ms
+=== R02 run 3 ===
+GroupAggregate  (cost=0.43..4.59 rows=1 width=44) (actual time=0.052..0.052 rows=1.00 loops=1)
+  Buffers: shared hit=4
+  ->  Index Only Scan using idx_trips_driver_requested_cover on trips  (cost=0.43..4.56 rows=4 width=10) (actual time=0.043..0.044 rows=5.00 loops=1)
+        Index Cond: ((driver_id = 217) AND (requested_at >= ('2026-03-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (requested_at < ('2026-04-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+        Filter: ((status)::text = 'COMPLETED'::text)
+        Rows Removed by Filter: 1
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=425
+Planning Time: 0.922 ms
+Execution Time: 0.082 ms

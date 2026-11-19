@@ -1,0 +1,69 @@
+=== R12 run 1 ===
+GroupAggregate  (cost=4148.45..4973.45 rows=30000 width=72) (actual time=13.394..16.556 rows=24.00 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=33 read=376
+  ->  Sort  (cost=4148.45..4223.45 rows=30000 width=37) (actual time=13.254..14.060 rows=48097.00 loops=1)
+        Sort Key: (EXTRACT(hour FROM t.requested_at))
+        Sort Method: quicksort  Memory: 3024kB
+        Buffers: shared hit=33 read=376
+        ->  Nested Loop  (cost=0.42..1917.55 rows=30000 width=37) (actual time=0.046..9.192 rows=48097.00 loops=1)
+              Buffers: shared hit=30 read=376
+              ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.002..0.004 rows=1.00 loops=1)
+                    Filter: ((city_name)::text = 'Delhi'::text)
+                    Rows Removed by Filter: 9
+                    Buffers: shared hit=1
+              ->  Index Only Scan using idx_trips_city_requested_cover on trips t  (cost=0.42..1541.42 rows=30000 width=17) (actual time=0.036..5.767 rows=48097.00 loops=1)
+                    Index Cond: (city_id = c.city_id)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=29 read=376
+Planning:
+  Buffers: shared hit=552
+Planning Time: 0.794 ms
+Execution Time: 16.585 ms
+=== R12 run 2 ===
+GroupAggregate  (cost=4148.45..4973.45 rows=30000 width=72) (actual time=9.472..12.470 rows=24.00 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=409
+  ->  Sort  (cost=4148.45..4223.45 rows=30000 width=37) (actual time=9.334..10.137 rows=48097.00 loops=1)
+        Sort Key: (EXTRACT(hour FROM t.requested_at))
+        Sort Method: quicksort  Memory: 3024kB
+        Buffers: shared hit=409
+        ->  Nested Loop  (cost=0.42..1917.55 rows=30000 width=37) (actual time=0.039..5.429 rows=48097.00 loops=1)
+              Buffers: shared hit=406
+              ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.003..0.003 rows=1.00 loops=1)
+                    Filter: ((city_name)::text = 'Delhi'::text)
+                    Rows Removed by Filter: 9
+                    Buffers: shared hit=1
+              ->  Index Only Scan using idx_trips_city_requested_cover on trips t  (cost=0.42..1541.42 rows=30000 width=17) (actual time=0.028..2.005 rows=48097.00 loops=1)
+                    Index Cond: (city_id = c.city_id)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=405
+Planning:
+  Buffers: shared hit=552
+Planning Time: 0.650 ms
+Execution Time: 12.496 ms
+=== R12 run 3 ===
+GroupAggregate  (cost=4148.45..4973.45 rows=30000 width=72) (actual time=10.105..13.120 rows=24.00 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=409
+  ->  Sort  (cost=4148.45..4223.45 rows=30000 width=37) (actual time=9.967..10.766 rows=48097.00 loops=1)
+        Sort Key: (EXTRACT(hour FROM t.requested_at))
+        Sort Method: quicksort  Memory: 3024kB
+        Buffers: shared hit=409
+        ->  Nested Loop  (cost=0.42..1917.55 rows=30000 width=37) (actual time=0.039..5.791 rows=48097.00 loops=1)
+              Buffers: shared hit=406
+              ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.002..0.003 rows=1.00 loops=1)
+                    Filter: ((city_name)::text = 'Delhi'::text)
+                    Rows Removed by Filter: 9
+                    Buffers: shared hit=1
+              ->  Index Only Scan using idx_trips_city_requested_cover on trips t  (cost=0.42..1541.42 rows=30000 width=17) (actual time=0.029..2.100 rows=48097.00 loops=1)
+                    Index Cond: (city_id = c.city_id)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=405
+Planning:
+  Buffers: shared hit=552
+Planning Time: 0.742 ms
+Execution Time: 13.148 ms
