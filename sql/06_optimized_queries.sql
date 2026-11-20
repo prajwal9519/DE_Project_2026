@@ -168,10 +168,12 @@ WHERE t.trip_id = 123458;
 
 -- @R16
 -- Admin panel: "All trips" table, page 8,001 (25 rows per page)
+-- CP-4 scale fix: keyset pagination replaces OFFSET 200000.
+-- Cursor (5800001) is the 200,000th highest trip_id (last row of page 8,000) in uber_large.
 SELECT trip_id, rider_id, driver_id, city_id, status, fare_amount, requested_at
 FROM trips
+WHERE trip_id < 5800001
 ORDER BY trip_id DESC
-OFFSET 200000
 LIMIT 25;
 
 -- @R17
@@ -265,12 +267,15 @@ LIMIT 100;
 
 -- @R25
 -- Fraud check: completed trips charging more than ₹100 per km
+-- CP-4 scale fix: explicit distance_km > 0 matches idx_trips_high_fare_per_km predicate
+-- (semantically identical because NULLIF(distance_km, 0) excludes 0 and CHECK enforces >= 0).
 SELECT trip_id, city_id, distance_km, fare_amount,
        round(fare_amount / NULLIF(distance_km, 0), 2) AS fare_per_km
 FROM trips
 WHERE status = 'COMPLETED'
+  AND distance_km > 0
   AND fare_amount / NULLIF(distance_km, 0) > 100
-ORDER BY fare_per_km DESC
+ORDER BY round(fare_amount / NULLIF(distance_km, 0), 2) DESC
 LIMIT 50;
 
 -- @W01

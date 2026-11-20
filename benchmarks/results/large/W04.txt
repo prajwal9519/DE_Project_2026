@@ -1,0 +1,36 @@
+=== W04 run 1 ===
+Insert on trips  (cost=0.00..137.50 rows=0 width=0) (actual time=54.234..54.234 rows=0.00 loops=1)
+  Buffers: shared hit=75209 read=250 dirtied=310 written=67
+  ->  Function Scan on generate_series g  (cost=0.00..137.50 rows=5000 width=270) (actual time=0.124..0.751 rows=5000.00 loops=1)
+Planning Time: 0.058 ms
+Trigger for constraint fk_trips_partitioned_city on trips_default: time=8.401 calls=5000
+Trigger for constraint fk_trips_partitioned_driver on trips_default: time=1.069 calls=5000
+Trigger for constraint fk_trips_partitioned_promo on trips_default: time=0.931 calls=5000
+Trigger for constraint fk_trips_partitioned_rider on trips_default: time=16.355 calls=5000
+Trigger for constraint fk_trips_partitioned_vehicle on trips_default: time=1.083 calls=5000
+Trigger for constraint fk_trips_partitioned_vehicle_driver on trips_default: time=0.942 calls=5000
+Execution Time: 83.798 ms
+=== W04 run 2 ===
+Insert on trips  (cost=0.00..137.50 rows=0 width=0) (actual time=63.786..63.786 rows=0.00 loops=1)
+  Buffers: shared hit=79777 read=302 dirtied=369 written=67
+  ->  Function Scan on generate_series g  (cost=0.00..137.50 rows=5000 width=270) (actual time=0.115..0.763 rows=5000.00 loops=1)
+Planning Time: 0.053 ms
+Trigger for constraint fk_trips_partitioned_city on trips_default: time=8.374 calls=5000
+Trigger for constraint fk_trips_partitioned_driver on trips_default: time=1.084 calls=5000
+Trigger for constraint fk_trips_partitioned_promo on trips_default: time=0.964 calls=5000
+Trigger for constraint fk_trips_partitioned_rider on trips_default: time=13.932 calls=5000
+Trigger for constraint fk_trips_partitioned_vehicle on trips_default: time=1.121 calls=5000
+Trigger for constraint fk_trips_partitioned_vehicle_driver on trips_default: time=0.980 calls=5000
+Execution Time: 91.008 ms
+=== W04 run 3 ===
+Insert on trips  (cost=0.00..137.50 rows=0 width=0) (actual time=26.141..26.142 rows=0.00 loops=1)
+  Buffers: shared hit=78468 read=101 dirtied=168 written=67
+  ->  Function Scan on generate_series g  (cost=0.00..137.50 rows=5000 width=270) (actual time=0.118..0.751 rows=5000.00 loops=1)
+Planning Time: 0.055 ms
+Trigger for constraint fk_trips_partitioned_city on trips_default: time=8.203 calls=5000
+Trigger for constraint fk_trips_partitioned_driver on trips_default: time=1.062 calls=5000
+Trigger for constraint fk_trips_partitioned_promo on trips_default: time=0.929 calls=5000
+Trigger for constraint fk_trips_partitioned_rider on trips_default: time=13.528 calls=5000
+Trigger for constraint fk_trips_partitioned_vehicle on trips_default: time=1.057 calls=5000
+Trigger for constraint fk_trips_partitioned_vehicle_driver on trips_default: time=0.926 calls=5000
+Execution Time: 52.582 ms

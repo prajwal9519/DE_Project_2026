@@ -1,0 +1,45 @@
+=== R14 run 1 ===
+Nested Loop  (cost=0.71..16.74 rows=1 width=53) (actual time=0.630..0.631 rows=1.00 loops=1)
+  Buffers: shared hit=2 read=5
+  ->  Index Scan using vehicles_registration_no_key on vehicles v  (cost=0.42..8.44 rows=1 width=30) (actual time=0.414..0.414 rows=1.00 loops=1)
+        Index Cond: ((registration_no)::text = 'KA01AA1500'::text)
+        Index Searches: 1
+        Buffers: shared read=4
+  ->  Index Scan using drivers_pkey on drivers d  (cost=0.29..8.31 rows=1 width=27) (actual time=0.214..0.214 rows=1.00 loops=1)
+        Index Cond: (driver_id = v.driver_id)
+        Index Searches: 1
+        Buffers: shared hit=2 read=1
+Planning:
+  Buffers: shared hit=321 read=6 dirtied=2
+Planning Time: 0.779 ms
+Execution Time: 0.650 ms
+=== R14 run 2 ===
+Nested Loop  (cost=0.71..16.74 rows=1 width=53) (actual time=0.013..0.014 rows=1.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using vehicles_registration_no_key on vehicles v  (cost=0.42..8.44 rows=1 width=30) (actual time=0.008..0.009 rows=1.00 loops=1)
+        Index Cond: ((registration_no)::text = 'KA01AA1500'::text)
+        Index Searches: 1
+        Buffers: shared hit=4
+  ->  Index Scan using drivers_pkey on drivers d  (cost=0.29..8.31 rows=1 width=27) (actual time=0.004..0.004 rows=1.00 loops=1)
+        Index Cond: (driver_id = v.driver_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=323
+Planning Time: 0.453 ms
+Execution Time: 0.032 ms
+=== R14 run 3 ===
+Nested Loop  (cost=0.71..16.74 rows=1 width=53) (actual time=0.012..0.013 rows=1.00 loops=1)
+  Buffers: shared hit=7
+  ->  Index Scan using vehicles_registration_no_key on vehicles v  (cost=0.42..8.44 rows=1 width=30) (actual time=0.008..0.008 rows=1.00 loops=1)
+        Index Cond: ((registration_no)::text = 'KA01AA1500'::text)
+        Index Searches: 1
+        Buffers: shared hit=4
+  ->  Index Scan using drivers_pkey on drivers d  (cost=0.29..8.31 rows=1 width=27) (actual time=0.004..0.004 rows=1.00 loops=1)
+        Index Cond: (driver_id = v.driver_id)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=323
+Planning Time: 0.453 ms
+Execution Time: 0.030 ms

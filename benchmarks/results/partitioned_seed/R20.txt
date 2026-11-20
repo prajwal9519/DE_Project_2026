@@ -1,0 +1,72 @@
+=== R20 run 1 ===
+WindowAgg  (cost=1708.42..2234.09 rows=14019 width=68) (actual time=1.768..2.478 rows=31.00 loops=1)
+  Window: w1 AS (ORDER BY ((trips.requested_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=74
+  ->  GroupAggregate  (cost=1708.38..2023.81 rows=14019 width=36) (actual time=1.739..2.465 rows=31.00 loops=1)
+        Group Key: ((trips.requested_at)::date)
+        Buffers: shared hit=74
+        ->  Sort  (cost=1708.38..1743.43 rows=14019 width=10) (actual time=1.709..1.944 rows=14001.00 loops=1)
+              Sort Key: ((trips.requested_at)::date)
+              Sort Method: quicksort  Memory: 822kB
+              Buffers: shared hit=74
+              ->  Append  (cost=0.29..742.81 rows=14019 width=10) (actual time=0.007..1.302 rows=14001.00 loops=1)
+                    Buffers: shared hit=71
+                    Subplans Removed: 18
+                    ->  Index Only Scan using trips_2026_05_requested_at_city_id_driver_id_fare_amount_idx on trips_2026_05 trips_1  (cost=0.29..599.32 rows=14001 width=10) (actual time=0.007..0.900 rows=14001.00 loops=1)
+                          Index Cond: ((requested_at >= ('2026-05-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (requested_at < ('2026-06-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=71
+Planning:
+  Buffers: shared hit=7125 read=1
+Planning Time: 10.039 ms
+Execution Time: 2.514 ms
+=== R20 run 2 ===
+WindowAgg  (cost=1708.42..2234.09 rows=14019 width=68) (actual time=1.767..2.494 rows=31.00 loops=1)
+  Window: w1 AS (ORDER BY ((trips.requested_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=74
+  ->  GroupAggregate  (cost=1708.38..2023.81 rows=14019 width=36) (actual time=1.739..2.481 rows=31.00 loops=1)
+        Group Key: ((trips.requested_at)::date)
+        Buffers: shared hit=74
+        ->  Sort  (cost=1708.38..1743.43 rows=14019 width=10) (actual time=1.704..1.941 rows=14001.00 loops=1)
+              Sort Key: ((trips.requested_at)::date)
+              Sort Method: quicksort  Memory: 822kB
+              Buffers: shared hit=74
+              ->  Append  (cost=0.29..742.81 rows=14019 width=10) (actual time=0.007..1.298 rows=14001.00 loops=1)
+                    Buffers: shared hit=71
+                    Subplans Removed: 18
+                    ->  Index Only Scan using trips_2026_05_requested_at_city_id_driver_id_fare_amount_idx on trips_2026_05 trips_1  (cost=0.29..599.32 rows=14001 width=10) (actual time=0.007..0.900 rows=14001.00 loops=1)
+                          Index Cond: ((requested_at >= ('2026-05-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (requested_at < ('2026-06-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=71
+Planning:
+  Buffers: shared hit=7126
+Planning Time: 9.505 ms
+Execution Time: 2.529 ms
+=== R20 run 3 ===
+WindowAgg  (cost=1708.42..2234.09 rows=14019 width=68) (actual time=1.779..2.497 rows=31.00 loops=1)
+  Window: w1 AS (ORDER BY ((trips.requested_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=74
+  ->  GroupAggregate  (cost=1708.38..2023.81 rows=14019 width=36) (actual time=1.750..2.484 rows=31.00 loops=1)
+        Group Key: ((trips.requested_at)::date)
+        Buffers: shared hit=74
+        ->  Sort  (cost=1708.38..1743.43 rows=14019 width=10) (actual time=1.721..1.958 rows=14001.00 loops=1)
+              Sort Key: ((trips.requested_at)::date)
+              Sort Method: quicksort  Memory: 822kB
+              Buffers: shared hit=74
+              ->  Append  (cost=0.29..742.81 rows=14019 width=10) (actual time=0.008..1.306 rows=14001.00 loops=1)
+                    Buffers: shared hit=71
+                    Subplans Removed: 18
+                    ->  Index Only Scan using trips_2026_05_requested_at_city_id_driver_id_fare_amount_idx on trips_2026_05 trips_1  (cost=0.29..599.32 rows=14001 width=10) (actual time=0.008..0.898 rows=14001.00 loops=1)
+                          Index Cond: ((requested_at >= ('2026-05-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (requested_at < ('2026-06-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=71
+Planning:
+  Buffers: shared hit=7126
+Planning Time: 9.647 ms
+Execution Time: 2.534 ms

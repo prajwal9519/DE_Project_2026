@@ -1,0 +1,225 @@
+=== R17 run 1 ===
+Sort  (cost=184780.65..184780.68 rows=10 width=55) (actual time=452.415..453.214 rows=10.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE ((t.status)::text ~~ 'CANCELLED%'::text)))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=2115 read=109839
+  ->  Finalize GroupAggregate  (cost=184777.29..184780.49 rows=10 width=55) (actual time=452.390..453.194 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Buffers: shared hit=2112 read=109839
+        ->  Gather Merge  (cost=184777.29..184780.08 rows=24 width=23) (actual time=452.380..453.182 rows=30.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=2112 read=109839
+              ->  Sort  (cost=183777.26..183777.29 rows=10 width=23) (actual time=450.165..450.168 rows=10.00 loops=3)
+                    Sort Key: c.city_name
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=2112 read=109839
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=183777.00..183777.10 rows=10 width=23) (actual time=450.142..450.145 rows=10.00 loops=3)
+                          Group Key: c.city_name
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=2096 read=109839
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Hash Join  (cost=1.23..158777.00 rows=2500000 width=18) (actual time=0.074..310.343 rows=2000000.00 loops=3)
+                                Hash Cond: (t.city_id = c.city_id)
+                                Buffers: shared hit=2096 read=109839
+                                ->  Parallel Append  (cost=0.00..149432.02 rows=2500003 width=15) (actual time=0.046..185.947 rows=2000000.00 loops=3)
+                                      Buffers: shared hit=2093 read=109839
+                                      ->  Parallel Seq Scan on trips_2025_12 t_12  (cost=0.00..7781.42 rows=141942 width=15) (actual time=0.051..21.418 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6268
+                                      ->  Parallel Seq Scan on trips_2026_03 t_15  (cost=0.00..7780.33 rows=141933 width=15) (actual time=0.056..20.732 rows=340640.00 loops=1)
+                                            Buffers: shared hit=94 read=6267
+                                      ->  Parallel Seq Scan on trips_2025_03 t_3  (cost=0.00..7779.42 rows=141942 width=15) (actual time=0.069..19.651 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6266
+                                      ->  Parallel Seq Scan on trips_2026_05 t_17  (cost=0.00..7777.42 rows=141942 width=15) (actual time=0.057..22.865 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6264
+                                      ->  Parallel Seq Scan on trips_2025_10 t_10  (cost=0.00..7775.42 rows=141942 width=15) (actual time=0.072..19.932 rows=340660.00 loops=1)
+                                            Buffers: shared hit=36 read=6320
+                                      ->  Parallel Seq Scan on trips_2026_01 t_13  (cost=0.00..7775.42 rows=141942 width=15) (actual time=0.067..21.406 rows=340660.00 loops=1)
+                                            Buffers: shared read=6356
+                                      ->  Parallel Seq Scan on trips_2025_05 t_5  (cost=0.00..7774.42 rows=141942 width=15) (actual time=0.089..20.209 rows=340660.00 loops=1)
+                                            Buffers: shared read=6355
+                                      ->  Parallel Seq Scan on trips_2025_07 t_7  (cost=0.00..7774.42 rows=141942 width=15) (actual time=0.069..21.220 rows=340660.00 loops=1)
+                                            Buffers: shared read=6355
+                                      ->  Parallel Seq Scan on trips_2025_01 t_1  (cost=0.00..7770.42 rows=141942 width=15) (actual time=0.077..20.839 rows=340660.00 loops=1)
+                                            Buffers: shared read=6351
+                                      ->  Parallel Seq Scan on trips_2025_08 t_8  (cost=0.00..7768.42 rows=141942 width=15) (actual time=0.075..20.087 rows=340660.00 loops=1)
+                                            Buffers: shared hit=1 read=6348
+                                      ->  Parallel Seq Scan on trips_2026_04 t_16  (cost=0.00..7530.67 rows=137367 width=15) (actual time=0.078..6.521 rows=109893.33 loops=3)
+                                            Buffers: shared read=6157
+                                      ->  Parallel Seq Scan on trips_2025_04 t_4  (cost=0.00..7523.67 rows=137367 width=15) (actual time=0.052..10.182 rows=164840.00 loops=2)
+                                            Buffers: shared hit=188 read=5962
+                                      ->  Parallel Seq Scan on trips_2025_11 t_11  (cost=0.00..7523.67 rows=137367 width=15) (actual time=0.023..18.313 rows=329680.00 loops=1)
+                                            Buffers: shared read=6150
+                                      ->  Parallel Seq Scan on trips_2025_06 t_6  (cost=0.00..7523.58 rows=137358 width=15) (actual time=0.022..19.509 rows=329660.00 loops=1)
+                                            Buffers: shared read=6150
+                                      ->  Parallel Seq Scan on trips_2025_09 t_9  (cost=0.00..7523.58 rows=137358 width=15) (actual time=0.019..18.420 rows=329660.00 loops=1)
+                                            Buffers: shared read=6150
+                                      ->  Parallel Seq Scan on trips_2026_06 t_18  (cost=0.00..7501.58 rows=137358 width=15) (actual time=0.024..18.797 rows=329660.00 loops=1)
+                                            Buffers: shared hit=1304 read=4824
+                                      ->  Parallel Seq Scan on trips_2026_02 t_14  (cost=0.00..7025.08 rows=128208 width=15) (actual time=0.021..17.610 rows=307700.00 loops=1)
+                                            Buffers: shared hit=94 read=5649
+                                      ->  Parallel Seq Scan on trips_2025_02 t_2  (cost=0.00..7023.08 rows=128208 width=15) (actual time=0.029..17.953 rows=307700.00 loops=1)
+                                            Buffers: shared hit=94 read=5647
+                                      ->  Parallel Seq Scan on trips_default t_19  (cost=0.00..0.00 rows=1 width=72) (actual time=0.000..0.000 rows=0.00 loops=1)
+                                ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.020..0.020 rows=10.00 loops=3)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=3
+                                      ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=11) (actual time=0.016..0.016 rows=10.00 loops=3)
+                                            Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=6881
+Planning Time: 8.117 ms
+Execution Time: 453.284 ms
+=== R17 run 2 ===
+Sort  (cost=184780.65..184780.68 rows=10 width=55) (actual time=453.594..454.423 rows=10.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE ((t.status)::text ~~ 'CANCELLED%'::text)))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=3207 read=108747
+  ->  Finalize GroupAggregate  (cost=184777.29..184780.49 rows=10 width=55) (actual time=453.573..454.412 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Buffers: shared hit=3204 read=108747
+        ->  Gather Merge  (cost=184777.29..184780.08 rows=24 width=23) (actual time=453.560..454.393 rows=30.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=3204 read=108747
+              ->  Sort  (cost=183777.26..183777.29 rows=10 width=23) (actual time=451.387..451.391 rows=10.00 loops=3)
+                    Sort Key: c.city_name
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=3204 read=108747
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=183777.00..183777.10 rows=10 width=23) (actual time=451.367..451.371 rows=10.00 loops=3)
+                          Group Key: c.city_name
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=3188 read=108747
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Hash Join  (cost=1.23..158777.00 rows=2500000 width=18) (actual time=0.062..306.695 rows=2000000.00 loops=3)
+                                Hash Cond: (t.city_id = c.city_id)
+                                Buffers: shared hit=3188 read=108747
+                                ->  Parallel Append  (cost=0.00..149432.02 rows=2500003 width=15) (actual time=0.039..184.980 rows=2000000.00 loops=3)
+                                      Buffers: shared hit=3185 read=108747
+                                      ->  Parallel Seq Scan on trips_2025_12 t_12  (cost=0.00..7781.42 rows=141942 width=15) (actual time=0.038..20.493 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6268
+                                      ->  Parallel Seq Scan on trips_2026_03 t_15  (cost=0.00..7780.33 rows=141933 width=15) (actual time=0.042..20.498 rows=340640.00 loops=1)
+                                            Buffers: shared hit=94 read=6267
+                                      ->  Parallel Seq Scan on trips_2025_03 t_3  (cost=0.00..7779.42 rows=141942 width=15) (actual time=0.064..19.566 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6266
+                                      ->  Parallel Seq Scan on trips_2026_05 t_17  (cost=0.00..7777.42 rows=141942 width=15) (actual time=0.047..19.966 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6264
+                                      ->  Parallel Seq Scan on trips_2025_10 t_10  (cost=0.00..7775.42 rows=141942 width=15) (actual time=0.070..19.956 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6262
+                                      ->  Parallel Seq Scan on trips_2026_01 t_13  (cost=0.00..7775.42 rows=141942 width=15) (actual time=0.048..19.947 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6262
+                                      ->  Parallel Seq Scan on trips_2025_05 t_5  (cost=0.00..7774.42 rows=141942 width=15) (actual time=0.072..20.429 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6261
+                                      ->  Parallel Seq Scan on trips_2025_07 t_7  (cost=0.00..7774.42 rows=141942 width=15) (actual time=0.055..22.033 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6261
+                                      ->  Parallel Seq Scan on trips_2025_01 t_1  (cost=0.00..7770.42 rows=141942 width=15) (actual time=0.076..19.263 rows=340660.00 loops=1)
+                                            Buffers: shared hit=94 read=6257
+                                      ->  Parallel Seq Scan on trips_2025_08 t_8  (cost=0.00..7768.42 rows=141942 width=15) (actual time=0.066..20.369 rows=340660.00 loops=1)
+                                            Buffers: shared hit=95 read=6254
+                                      ->  Parallel Seq Scan on trips_2026_04 t_16  (cost=0.00..7530.67 rows=137367 width=15) (actual time=0.069..6.534 rows=109893.33 loops=3)
+                                            Buffers: shared hit=282 read=5875
+                                      ->  Parallel Seq Scan on trips_2025_04 t_4  (cost=0.00..7523.67 rows=137367 width=15) (actual time=0.043..9.730 rows=164840.00 loops=2)
+                                            Buffers: shared hit=188 read=5962
+                                      ->  Parallel Seq Scan on trips_2025_11 t_11  (cost=0.00..7523.67 rows=137367 width=15) (actual time=0.026..19.327 rows=329680.00 loops=1)
+                                            Buffers: shared hit=94 read=6056
+                                      ->  Parallel Seq Scan on trips_2025_06 t_6  (cost=0.00..7523.58 rows=137358 width=15) (actual time=0.016..19.555 rows=329660.00 loops=1)
+                                            Buffers: shared hit=94 read=6056
+                                      ->  Parallel Seq Scan on trips_2025_09 t_9  (cost=0.00..7523.58 rows=137358 width=15) (actual time=0.020..19.214 rows=329660.00 loops=1)
+                                            Buffers: shared hit=94 read=6056
+                                      ->  Parallel Seq Scan on trips_2026_06 t_18  (cost=0.00..7501.58 rows=137358 width=15) (actual time=0.027..20.638 rows=329660.00 loops=1)
+                                            Buffers: shared hit=1304 read=4824
+                                      ->  Parallel Seq Scan on trips_2026_02 t_14  (cost=0.00..7025.08 rows=128208 width=15) (actual time=0.052..17.900 rows=307700.00 loops=1)
+                                            Buffers: shared hit=94 read=5649
+                                      ->  Parallel Seq Scan on trips_2025_02 t_2  (cost=0.00..7023.08 rows=128208 width=15) (actual time=0.037..17.837 rows=307700.00 loops=1)
+                                            Buffers: shared hit=94 read=5647
+                                      ->  Parallel Seq Scan on trips_default t_19  (cost=0.00..0.00 rows=1 width=72) (actual time=0.000..0.000 rows=0.00 loops=1)
+                                ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.019..0.019 rows=10.00 loops=3)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=3
+                                      ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=11) (actual time=0.014..0.015 rows=10.00 loops=3)
+                                            Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=6881
+Planning Time: 8.061 ms
+Execution Time: 454.486 ms
+=== R17 run 3 ===
+Sort  (cost=184780.65..184780.68 rows=10 width=55) (actual time=538.993..540.369 rows=10.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE ((t.status)::text ~~ 'CANCELLED%'::text)))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5181 read=106773
+  ->  Finalize GroupAggregate  (cost=184777.29..184780.49 rows=10 width=55) (actual time=538.980..540.361 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Buffers: shared hit=5178 read=106773
+        ->  Gather Merge  (cost=184777.29..184780.08 rows=24 width=23) (actual time=538.968..540.348 rows=30.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=5178 read=106773
+              ->  Sort  (cost=183777.26..183777.29 rows=10 width=23) (actual time=537.016..537.020 rows=10.00 loops=3)
+                    Sort Key: c.city_name
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=5178 read=106773
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=183777.00..183777.10 rows=10 width=23) (actual time=536.991..536.994 rows=10.00 loops=3)
+                          Group Key: c.city_name
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=5162 read=106773
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Hash Join  (cost=1.23..158777.00 rows=2500000 width=18) (actual time=0.068..366.986 rows=2000000.00 loops=3)
+                                Hash Cond: (t.city_id = c.city_id)
+                                Buffers: shared hit=5162 read=106773
+                                ->  Parallel Append  (cost=0.00..149432.02 rows=2500003 width=15) (actual time=0.047..224.523 rows=2000000.00 loops=3)
+                                      Buffers: shared hit=5159 read=106773
+                                      ->  Parallel Seq Scan on trips_2025_12 t_12  (cost=0.00..7781.42 rows=141942 width=15) (actual time=0.036..20.681 rows=340660.00 loops=1)
+                                            Buffers: shared hit=188 read=6174
+                                      ->  Parallel Seq Scan on trips_2026_03 t_15  (cost=0.00..7780.33 rows=141933 width=15) (actual time=0.068..19.580 rows=340640.00 loops=1)
+                                            Buffers: shared hit=188 read=6173
+                                      ->  Parallel Seq Scan on trips_2025_03 t_3  (cost=0.00..7779.42 rows=141942 width=15) (actual time=0.053..20.733 rows=340660.00 loops=1)
+                                            Buffers: shared hit=188 read=6172
+                                      ->  Parallel Seq Scan on trips_2026_05 t_17  (cost=0.00..7777.42 rows=141942 width=15) (actual time=0.049..20.553 rows=340660.00 loops=1)
+                                            Buffers: shared hit=188 read=6170
+                                      ->  Parallel Seq Scan on trips_2025_10 t_10  (cost=0.00..7775.42 rows=141942 width=15) (actual time=0.065..20.493 rows=340660.00 loops=1)
+                                            Buffers: shared hit=188 read=6168
+                                      ->  Parallel Seq Scan on trips_2026_01 t_13  (cost=0.00..7775.42 rows=141942 width=15) (actual time=0.045..19.880 rows=340660.00 loops=1)
+                                            Buffers: shared hit=188 read=6168
+                                      ->  Parallel Seq Scan on trips_2025_05 t_5  (cost=0.00..7774.42 rows=141942 width=15) (actual time=0.055..20.442 rows=340660.00 loops=1)
+                                            Buffers: shared hit=188 read=6167
+                                      ->  Parallel Seq Scan on trips_2025_07 t_7  (cost=0.00..7774.42 rows=141942 width=15) (actual time=0.044..20.889 rows=340660.00 loops=1)
+                                            Buffers: shared hit=188 read=6167
+                                      ->  Parallel Seq Scan on trips_2025_01 t_1  (cost=0.00..7770.42 rows=141942 width=15) (actual time=0.056..53.045 rows=340660.00 loops=1)
+                                            Buffers: shared hit=188 read=6163
+                                      ->  Parallel Seq Scan on trips_2025_08 t_8  (cost=0.00..7768.42 rows=141942 width=15) (actual time=0.088..54.553 rows=340660.00 loops=1)
+                                            Buffers: shared hit=189 read=6160
+                                      ->  Parallel Seq Scan on trips_2026_04 t_16  (cost=0.00..7530.67 rows=137367 width=15) (actual time=0.067..7.017 rows=109893.33 loops=3)
+                                            Buffers: shared hit=564 read=5593
+                                      ->  Parallel Seq Scan on trips_2025_04 t_4  (cost=0.00..7523.67 rows=137367 width=15) (actual time=0.041..9.989 rows=164840.00 loops=2)
+                                            Buffers: shared hit=376 read=5774
+                                      ->  Parallel Seq Scan on trips_2025_11 t_11  (cost=0.00..7523.67 rows=137367 width=15) (actual time=4.296..48.055 rows=329680.00 loops=1)
+                                            Buffers: shared hit=188 read=5962
+                                      ->  Parallel Seq Scan on trips_2025_06 t_6  (cost=0.00..7523.58 rows=137358 width=15) (actual time=0.017..29.088 rows=329660.00 loops=1)
+                                            Buffers: shared hit=188 read=5962
+                                      ->  Parallel Seq Scan on trips_2025_09 t_9  (cost=0.00..7523.58 rows=137358 width=15) (actual time=0.020..19.395 rows=329660.00 loops=1)
+                                            Buffers: shared hit=188 read=5962
+                                      ->  Parallel Seq Scan on trips_2026_06 t_18  (cost=0.00..7501.58 rows=137358 width=15) (actual time=0.019..19.094 rows=329660.00 loops=1)
+                                            Buffers: shared hit=1398 read=4730
+                                      ->  Parallel Seq Scan on trips_2026_02 t_14  (cost=0.00..7025.08 rows=128208 width=15) (actual time=0.019..17.462 rows=307700.00 loops=1)
+                                            Buffers: shared hit=188 read=5555
+                                      ->  Parallel Seq Scan on trips_2025_02 t_2  (cost=0.00..7023.08 rows=128208 width=15) (actual time=0.036..17.121 rows=307700.00 loops=1)
+                                            Buffers: shared hit=188 read=5553
+                                      ->  Parallel Seq Scan on trips_default t_19  (cost=0.00..0.00 rows=1 width=72) (actual time=0.000..0.000 rows=0.00 loops=1)
+                                ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.017..0.017 rows=10.00 loops=3)
+                                      Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                      Buffers: shared hit=3
+                                      ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=11) (actual time=0.013..0.014 rows=10.00 loops=3)
+                                            Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=6881
+Planning Time: 8.267 ms
+Execution Time: 540.431 ms

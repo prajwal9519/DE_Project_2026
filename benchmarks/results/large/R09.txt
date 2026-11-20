@@ -1,0 +1,99 @@
+=== R09 run 1 ===
+Gather  (cost=6040.61..38044.03 rows=6612 width=45) (actual time=68.736..72.887 rows=17860.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=3 read=19490
+  ->  Parallel Hash Right Anti Join  (cost=5040.61..36382.83 rows=2755 width=45) (actual time=66.324..67.167 rows=5953.33 loops=3)
+        Hash Cond: (t.rider_id = r.rider_id)
+        Buffers: shared hit=3 read=19490
+        ->  Parallel Append  (cost=0.00..25934.67 rows=416668 width=4) (actual time=0.051..30.869 rows=333333.33 loops=3)
+              Buffers: shared read=18643
+              ->  Parallel Seq Scan on trips_2026_05 t_2  (cost=0.00..8132.27 rows=141942 width=4) (actual time=0.073..6.537 rows=113553.33 loops=3)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared read=6358
+              ->  Parallel Seq Scan on trips_2026_04 t_1  (cost=0.00..7874.08 rows=137367 width=4) (actual time=0.091..10.055 rows=164840.00 loops=2)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared read=6157
+              ->  Parallel Seq Scan on trips_2026_06 t_3  (cost=0.00..7844.98 rows=137358 width=4) (actual time=0.028..17.879 rows=329660.00 loops=1)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared read=6128
+              ->  Parallel Seq Scan on trips_default t_4  (cost=0.00..0.00 rows=1 width=4) (actual time=0.003..0.003 rows=0.00 loops=1)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+        ->  Parallel Hash  (cost=4544.26..4544.26 rows=39708 width=45) (actual time=8.074..8.075 rows=32000.00 loops=3)
+              Buckets: 131072  Batches: 1  Memory Usage: 8608kB
+              Buffers: shared hit=3 read=847
+              ->  Parallel Index Only Scan using idx_riders_home_city_cover on riders r  (cost=0.42..4544.26 rows=39708 width=45) (actual time=0.126..5.670 rows=32000.00 loops=3)
+                    Index Cond: (home_city_id = 1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=3 read=847
+Planning:
+  Buffers: shared hit=1896 read=187 dirtied=1
+Planning Time: 11.379 ms
+Execution Time: 73.268 ms
+=== R09 run 2 ===
+Gather  (cost=6040.61..38044.03 rows=6612 width=45) (actual time=58.532..61.759 rows=17860.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=1318 read=18175
+  ->  Parallel Hash Right Anti Join  (cost=5040.61..36382.83 rows=2755 width=45) (actual time=56.579..57.339 rows=5953.33 loops=3)
+        Hash Cond: (t.rider_id = r.rider_id)
+        Buffers: shared hit=1318 read=18175
+        ->  Parallel Append  (cost=0.00..25934.67 rows=416668 width=4) (actual time=0.071..28.759 rows=333333.33 loops=3)
+              Buffers: shared hit=468 read=18175
+              ->  Parallel Seq Scan on trips_2026_05 t_2  (cost=0.00..8132.27 rows=141942 width=4) (actual time=0.048..8.769 rows=170330.00 loops=2)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=235 read=6123
+              ->  Parallel Seq Scan on trips_2026_04 t_1  (cost=0.00..7874.08 rows=137367 width=4) (actual time=0.079..17.197 rows=329680.00 loops=1)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=139 read=6018
+              ->  Parallel Seq Scan on trips_2026_06 t_3  (cost=0.00..7844.98 rows=137358 width=4) (actual time=0.060..8.947 rows=164830.00 loops=2)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=94 read=6034
+              ->  Parallel Seq Scan on trips_default t_4  (cost=0.00..0.00 rows=1 width=4) (actual time=0.000..0.000 rows=0.00 loops=1)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+        ->  Parallel Hash  (cost=4544.26..4544.26 rows=39708 width=45) (actual time=4.261..4.262 rows=32000.00 loops=3)
+              Buckets: 131072  Batches: 1  Memory Usage: 8608kB
+              Buffers: shared hit=850
+              ->  Parallel Index Only Scan using idx_riders_home_city_cover on riders r  (cost=0.42..4544.26 rows=39708 width=45) (actual time=0.019..1.950 rows=32000.00 loops=3)
+                    Index Cond: (home_city_id = 1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=850
+Planning:
+  Buffers: shared hit=2083
+Planning Time: 2.513 ms
+Execution Time: 62.138 ms
+=== R09 run 3 ===
+Gather  (cost=6040.61..38044.03 rows=6612 width=45) (actual time=60.601..65.397 rows=17860.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=1615 read=17878
+  ->  Parallel Hash Right Anti Join  (cost=5040.61..36382.83 rows=2755 width=45) (actual time=58.670..59.630 rows=5953.33 loops=3)
+        Hash Cond: (t.rider_id = r.rider_id)
+        Buffers: shared hit=1615 read=17878
+        ->  Parallel Append  (cost=0.00..25934.67 rows=416668 width=4) (actual time=0.069..28.928 rows=333333.33 loops=3)
+              Buffers: shared hit=765 read=17878
+              ->  Parallel Seq Scan on trips_2026_05 t_2  (cost=0.00..8132.27 rows=141942 width=4) (actual time=0.029..6.158 rows=113553.33 loops=3)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=329 read=6029
+              ->  Parallel Seq Scan on trips_2026_04 t_1  (cost=0.00..7874.08 rows=137367 width=4) (actual time=0.076..17.012 rows=329680.00 loops=1)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=233 read=5924
+              ->  Parallel Seq Scan on trips_2026_06 t_3  (cost=0.00..7844.98 rows=137358 width=4) (actual time=0.026..8.987 rows=164830.00 loops=2)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=203 read=5925
+              ->  Parallel Seq Scan on trips_default t_4  (cost=0.00..0.00 rows=1 width=4) (actual time=0.002..0.002 rows=0.00 loops=1)
+                    Filter: (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+        ->  Parallel Hash  (cost=4544.26..4544.26 rows=39708 width=45) (actual time=4.716..4.716 rows=32000.00 loops=3)
+              Buckets: 131072  Batches: 1  Memory Usage: 8640kB
+              Buffers: shared hit=850
+              ->  Parallel Index Only Scan using idx_riders_home_city_cover on riders r  (cost=0.42..4544.26 rows=39708 width=45) (actual time=0.018..2.207 rows=32000.00 loops=3)
+                    Index Cond: (home_city_id = 1)
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=850
+Planning:
+  Buffers: shared hit=2083
+Planning Time: 2.815 ms
+Execution Time: 65.825 ms

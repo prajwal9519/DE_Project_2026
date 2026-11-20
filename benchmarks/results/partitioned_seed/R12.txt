@@ -1,0 +1,336 @@
+=== R12 run 1 ===
+GroupAggregate  (cost=4359.02..5184.02 rows=30000 width=72) (actual time=20.536..23.810 rows=24.00 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=23 read=438
+  ->  Sort  (cost=4359.02..4434.02 rows=30000 width=37) (actual time=20.404..21.264 rows=48097.00 loops=1)
+        Sort Key: (EXTRACT(hour FROM t.requested_at))
+        Sort Method: quicksort  Memory: 3024kB
+        Buffers: shared hit=23 read=438
+        ->  Nested Loop  (cost=0.29..2128.11 rows=30000 width=37) (actual time=0.309..16.470 rows=48097.00 loops=1)
+              Buffers: shared hit=20 read=438
+              ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.003..0.004 rows=1.00 loops=1)
+                    Filter: ((city_name)::text = 'Delhi'::text)
+                    Rows Removed by Filter: 9
+                    Buffers: shared hit=1
+              ->  Append  (cost=0.29..1752.04 rows=29995 width=17) (actual time=0.296..13.407 rows=48097.00 loops=1)
+                    Buffers: shared hit=19 read=438
+                    ->  Index Only Scan using trips_2025_01_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_01 t_1  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.296..0.903 rows=2718.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=24
+                    ->  Index Only Scan using trips_2025_02_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_02 t_2  (cost=0.29..83.20 rows=1538 width=17) (actual time=0.246..0.681 rows=2475.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=23
+                    ->  Index Only Scan using trips_2025_03_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_03 t_3  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.247..0.727 rows=2835.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=26
+                    ->  Index Only Scan using trips_2025_04_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_04 t_4  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.233..0.639 rows=2664.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=25
+                    ->  Index Only Scan using trips_2025_05_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_05 t_5  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.202..0.664 rows=2793.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=25
+                    ->  Index Only Scan using trips_2025_06_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_06 t_6  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.206..0.638 rows=2635.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=24
+                    ->  Index Only Scan using trips_2025_07_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_07 t_7  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.199..0.586 rows=2716.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=25
+                    ->  Index Only Scan using trips_2025_08_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_08 t_8  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.206..0.626 rows=2662.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=24
+                    ->  Index Only Scan using trips_2025_09_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_09 t_9  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.200..0.640 rows=2634.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=24
+                    ->  Index Only Scan using trips_2025_10_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_10 t_10  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.210..0.700 rows=2735.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=25
+                    ->  Index Only Scan using trips_2025_11_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_11 t_11  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.202..0.637 rows=2666.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=24
+                    ->  Index Only Scan using trips_2025_12_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_12 t_12  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.215..0.647 rows=2738.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=25
+                    ->  Index Only Scan using trips_2026_01_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_01 t_13  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.217..0.637 rows=2743.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=25
+                    ->  Index Only Scan using trips_2026_02_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_02 t_14  (cost=0.29..83.20 rows=1538 width=17) (actual time=0.245..0.641 rows=2435.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=22
+                    ->  Index Only Scan using trips_2026_03_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_03 t_15  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.207..0.627 rows=2735.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=25
+                    ->  Index Only Scan using trips_2026_04_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_04 t_16  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.221..0.649 rows=2567.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=24
+                    ->  Index Only Scan using trips_2026_05_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_05 t_17  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.125..0.698 rows=2684.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=2 read=24
+                    ->  Index Only Scan using trips_2026_06_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_06 t_18  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.207..0.633 rows=2662.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=24
+                    ->  Seq Scan on trips_default t_19  (cost=0.00..0.00 rows=1 width=24) (actual time=0.002..0.002 rows=0.00 loops=1)
+                          Filter: (c.city_id = city_id)
+Planning:
+  Buffers: shared hit=6893
+Planning Time: 8.533 ms
+Execution Time: 23.894 ms
+=== R12 run 2 ===
+GroupAggregate  (cost=4359.02..5184.02 rows=30000 width=72) (actual time=11.054..14.168 rows=24.00 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=461
+  ->  Sort  (cost=4359.02..4434.02 rows=30000 width=37) (actual time=10.923..11.750 rows=48097.00 loops=1)
+        Sort Key: (EXTRACT(hour FROM t.requested_at))
+        Sort Method: quicksort  Memory: 3024kB
+        Buffers: shared hit=461
+        ->  Nested Loop  (cost=0.29..2128.11 rows=30000 width=37) (actual time=0.035..7.090 rows=48097.00 loops=1)
+              Buffers: shared hit=458
+              ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.002..0.003 rows=1.00 loops=1)
+                    Filter: ((city_name)::text = 'Delhi'::text)
+                    Rows Removed by Filter: 9
+                    Buffers: shared hit=1
+              ->  Append  (cost=0.29..1752.04 rows=29995 width=17) (actual time=0.024..4.003 rows=48097.00 loops=1)
+                    Buffers: shared hit=457
+                    ->  Index Only Scan using trips_2025_01_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_01 t_1  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.024..0.140 rows=2718.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2025_02_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_02 t_2  (cost=0.29..83.20 rows=1538 width=17) (actual time=0.027..0.140 rows=2475.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=24
+                    ->  Index Only Scan using trips_2025_03_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_03 t_3  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.023..0.154 rows=2835.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=27
+                    ->  Index Only Scan using trips_2025_04_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_04 t_4  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.023..0.140 rows=2664.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2025_05_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_05 t_5  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.022..0.140 rows=2793.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2025_06_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_06 t_6  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.022..0.133 rows=2635.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2025_07_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_07 t_7  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.021..0.137 rows=2716.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2025_08_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_08 t_8  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.033..0.149 rows=2662.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2025_09_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_09 t_9  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.021..0.144 rows=2634.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2025_10_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_10 t_10  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.022..0.148 rows=2735.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2025_11_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_11 t_11  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.022..0.139 rows=2666.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2025_12_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_12 t_12  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.023..0.151 rows=2738.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2026_01_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_01 t_13  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.023..0.144 rows=2743.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2026_02_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_02 t_14  (cost=0.29..83.20 rows=1538 width=17) (actual time=0.022..0.128 rows=2435.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=23
+                    ->  Index Only Scan using trips_2026_03_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_03 t_15  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.022..0.149 rows=2735.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2026_04_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_04 t_16  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.028..0.151 rows=2567.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2026_05_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_05 t_17  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.025..0.143 rows=2684.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2026_06_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_06 t_18  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.025..0.140 rows=2662.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Seq Scan on trips_default t_19  (cost=0.00..0.00 rows=1 width=24) (actual time=0.002..0.002 rows=0.00 loops=1)
+                          Filter: (c.city_id = city_id)
+Planning:
+  Buffers: shared hit=6893
+Planning Time: 8.230 ms
+Execution Time: 14.243 ms
+=== R12 run 3 ===
+GroupAggregate  (cost=4359.02..5184.02 rows=30000 width=72) (actual time=11.370..14.528 rows=24.00 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=461
+  ->  Sort  (cost=4359.02..4434.02 rows=30000 width=37) (actual time=11.237..12.086 rows=48097.00 loops=1)
+        Sort Key: (EXTRACT(hour FROM t.requested_at))
+        Sort Method: quicksort  Memory: 3024kB
+        Buffers: shared hit=461
+        ->  Nested Loop  (cost=0.29..2128.11 rows=30000 width=37) (actual time=0.035..7.287 rows=48097.00 loops=1)
+              Buffers: shared hit=458
+              ->  Seq Scan on cities c  (cost=0.00..1.12 rows=1 width=4) (actual time=0.002..0.006 rows=1.00 loops=1)
+                    Filter: ((city_name)::text = 'Delhi'::text)
+                    Rows Removed by Filter: 9
+                    Buffers: shared hit=1
+              ->  Append  (cost=0.29..1752.04 rows=29995 width=17) (actual time=0.024..4.199 rows=48097.00 loops=1)
+                    Buffers: shared hit=457
+                    ->  Index Only Scan using trips_2025_01_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_01 t_1  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.024..0.146 rows=2718.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2025_02_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_02 t_2  (cost=0.29..83.20 rows=1538 width=17) (actual time=0.027..0.141 rows=2475.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=24
+                    ->  Index Only Scan using trips_2025_03_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_03 t_3  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.023..0.148 rows=2835.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=27
+                    ->  Index Only Scan using trips_2025_04_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_04 t_4  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.021..0.141 rows=2664.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2025_05_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_05 t_5  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.022..0.170 rows=2793.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2025_06_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_06 t_6  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.030..0.169 rows=2635.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2025_07_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_07 t_7  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.033..0.156 rows=2716.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2025_08_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_08 t_8  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.024..0.146 rows=2662.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2025_09_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_09 t_9  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.022..0.144 rows=2634.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2025_10_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_10 t_10  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.023..0.154 rows=2735.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2025_11_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_11 t_11  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.023..0.146 rows=2666.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2025_12_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2025_12 t_12  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.026..0.158 rows=2738.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2026_01_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_01 t_13  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.024..0.146 rows=2743.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2026_02_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_02 t_14  (cost=0.29..83.20 rows=1538 width=17) (actual time=0.028..0.142 rows=2435.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=23
+                    ->  Index Only Scan using trips_2026_03_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_03 t_15  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.028..0.159 rows=2735.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2026_04_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_04 t_16  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.029..0.150 rows=2567.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Index Only Scan using trips_2026_05_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_05 t_17  (cost=0.29..90.09 rows=1703 width=17) (actual time=0.027..0.153 rows=2684.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=26
+                    ->  Index Only Scan using trips_2026_06_city_id_requested_at_trip_id_status_fare_amou_idx on trips_2026_06 t_18  (cost=0.29..89.13 rows=1648 width=17) (actual time=0.029..0.150 rows=2662.00 loops=1)
+                          Index Cond: (city_id = c.city_id)
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=25
+                    ->  Seq Scan on trips_default t_19  (cost=0.00..0.00 rows=1 width=24) (actual time=0.003..0.003 rows=0.00 loops=1)
+                          Filter: (c.city_id = city_id)
+Planning:
+  Buffers: shared hit=6893
+Planning Time: 7.714 ms
+Execution Time: 14.635 ms

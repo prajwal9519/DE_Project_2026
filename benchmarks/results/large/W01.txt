@@ -1,0 +1,36 @@
+=== W01 run 1 ===
+Insert on trips  (cost=0.00..0.01 rows=0 width=0) (actual time=1.489..1.489 rows=0.00 loops=1)
+  Buffers: shared hit=420 read=10 dirtied=8 written=1
+  ->  Result  (cost=0.00..0.01 rows=1 width=270) (actual time=0.003..0.003 rows=1.00 loops=1)
+Planning Time: 0.034 ms
+Trigger for constraint fk_trips_partitioned_city on trips_default: time=0.715 calls=1
+Trigger for constraint fk_trips_partitioned_driver on trips_default: time=0.014 calls=1
+Trigger for constraint fk_trips_partitioned_promo on trips_default: time=0.011 calls=1
+Trigger for constraint fk_trips_partitioned_rider on trips_default: time=0.507 calls=1
+Trigger for constraint fk_trips_partitioned_vehicle on trips_default: time=0.016 calls=1
+Trigger for constraint fk_trips_partitioned_vehicle_driver on trips_default: time=0.003 calls=1
+Execution Time: 2.850 ms
+=== W01 run 2 ===
+Insert on trips  (cost=0.00..0.01 rows=0 width=0) (actual time=0.418..0.418 rows=0.00 loops=1)
+  Buffers: shared hit=432
+  ->  Result  (cost=0.00..0.01 rows=1 width=270) (actual time=0.002..0.002 rows=1.00 loops=1)
+Planning Time: 0.033 ms
+Trigger for constraint fk_trips_partitioned_city on trips_default: time=0.204 calls=1
+Trigger for constraint fk_trips_partitioned_driver on trips_default: time=0.011 calls=1
+Trigger for constraint fk_trips_partitioned_promo on trips_default: time=0.010 calls=1
+Trigger for constraint fk_trips_partitioned_rider on trips_default: time=0.225 calls=1
+Trigger for constraint fk_trips_partitioned_vehicle on trips_default: time=0.014 calls=1
+Trigger for constraint fk_trips_partitioned_vehicle_driver on trips_default: time=0.002 calls=1
+Execution Time: 0.975 ms
+=== W01 run 3 ===
+Insert on trips  (cost=0.00..0.01 rows=0 width=0) (actual time=0.416..0.416 rows=0.00 loops=1)
+  Buffers: shared hit=432
+  ->  Result  (cost=0.00..0.01 rows=1 width=270) (actual time=0.002..0.003 rows=1.00 loops=1)
+Planning Time: 0.033 ms
+Trigger for constraint fk_trips_partitioned_city on trips_default: time=0.202 calls=1
+Trigger for constraint fk_trips_partitioned_driver on trips_default: time=0.011 calls=1
+Trigger for constraint fk_trips_partitioned_promo on trips_default: time=0.010 calls=1
+Trigger for constraint fk_trips_partitioned_rider on trips_default: time=0.223 calls=1
+Trigger for constraint fk_trips_partitioned_vehicle on trips_default: time=0.014 calls=1
+Trigger for constraint fk_trips_partitioned_vehicle_driver on trips_default: time=0.002 calls=1
+Execution Time: 0.969 ms

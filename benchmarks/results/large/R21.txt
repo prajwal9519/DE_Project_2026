@@ -1,0 +1,237 @@
+=== R21 run 1 ===
+Sort  (cost=46691.20..46691.30 rows=40 width=21) (actual time=169.058..169.061 rows=40.00 loops=1)
+  Sort Key: (count(t.trip_id)) DESC
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=1382 read=26117
+  ->  HashAggregate  (cost=46689.74..46690.14 rows=40 width=21) (actual time=169.046..169.050 rows=40.00 loops=1)
+        Group Key: p.promo_code
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=1379 read=26117
+        ->  Merge Right Join  (cost=5.83..44685.67 rows=400813 width=17) (actual time=2.198..146.622 rows=399460.00 loops=1)
+              Merge Cond: ((t.promo_code)::text = (p.promo_code)::text)
+              Buffers: shared hit=1379 read=26117
+              ->  Merge Append  (cost=5.69..593653.92 rows=6000001 width=12) (actual time=2.195..127.374 rows=399460.00 loops=1)
+                    Sort Key: t.promo_code
+                    Buffers: shared hit=1377 read=26117
+                    ->  Index Scan using trips_2025_01_promo_code_idx on trips_2025_01 t_1  (cost=0.28..14032.55 rows=340660 width=12) (actual time=0.139..1.398 rows=4740.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=332
+                    ->  Index Scan using trips_2025_02_promo_code_idx on trips_2025_02 t_2  (cost=0.28..17184.39 rows=307700 width=12) (actual time=0.131..1.810 rows=6760.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=6 read=461
+                    ->  Index Scan using trips_2025_03_promo_code_idx on trips_2025_03 t_3  (cost=0.29..25361.82 rows=340660 width=12) (actual time=0.117..2.815 rows=12500.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=28 read=840
+                    ->  Index Scan using trips_2025_04_promo_code_idx on trips_2025_04 t_4  (cost=0.29..24894.36 rows=329680 width=12) (actual time=0.128..3.589 rows=15160.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=29 read=1011
+                    ->  Index Scan using trips_2025_05_promo_code_idx on trips_2025_05 t_5  (cost=0.29..25685.04 rows=340660 width=12) (actual time=0.118..3.979 rows=19120.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=44 read=1262
+                    ->  Index Scan using trips_2025_06_promo_code_idx on trips_2025_06 t_6  (cost=0.29..24986.16 rows=329660 width=12) (actual time=0.091..4.492 rows=21940.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=59 read=1430
+                    ->  Index Scan using trips_2025_07_promo_code_idx on trips_2025_07 t_7  (cost=0.29..25693.54 rows=340660 width=12) (actual time=0.118..4.866 rows=24860.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=87 read=1630
+                    ->  Index Scan using trips_2025_08_promo_code_idx on trips_2025_08 t_8  (cost=0.29..25946.73 rows=340660 width=12) (actual time=0.114..5.807 rows=28940.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=110 read=1886
+                    ->  Index Scan using trips_2025_09_promo_code_idx on trips_2025_09 t_9  (cost=0.29..24982.73 rows=329660 width=12) (actual time=0.114..5.421 rows=27240.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=107 read=1742
+                    ->  Index Scan using trips_2025_10_promo_code_idx on trips_2025_10 t_10  (cost=0.29..25607.54 rows=340660 width=12) (actual time=0.091..5.294 rows=27400.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=107 read=1753
+                    ->  Index Scan using trips_2025_11_promo_code_idx on trips_2025_11 t_11  (cost=0.29..25061.25 rows=329680 width=12) (actual time=0.115..5.384 rows=26860.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=119 read=1748
+                    ->  Index Scan using trips_2025_12_promo_code_idx on trips_2025_12 t_12  (cost=0.29..25919.60 rows=340660 width=12) (actual time=0.143..5.614 rows=27800.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=102 read=1803
+                    ->  Index Scan using trips_2026_01_promo_code_idx on trips_2026_01 t_13  (cost=0.29..25928.89 rows=340660 width=12) (actual time=0.084..5.411 rows=26800.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=104 read=1775
+                    ->  Index Scan using trips_2026_02_promo_code_idx on trips_2026_02 t_14  (cost=0.29..23394.50 rows=307700 width=12) (actual time=0.111..4.720 rows=23320.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=84 read=1519
+                    ->  Index Scan using trips_2026_03_promo_code_idx on trips_2026_03 t_15  (cost=0.29..25905.95 rows=340640 width=12) (actual time=0.148..5.341 rows=26580.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=98 read=1730
+                    ->  Index Scan using trips_2026_04_promo_code_idx on trips_2026_04 t_16  (cost=0.29..25015.34 rows=329680 width=12) (actual time=0.106..5.526 rows=27300.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=93 read=1787
+                    ->  Index Scan using trips_2026_05_promo_code_idx on trips_2026_05 t_17  (cost=0.29..25797.72 rows=340660 width=12) (actual time=0.227..5.475 rows=25480.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=98 read=1686
+                    ->  Index Scan using trips_2026_06_promo_code_idx on trips_2026_06 t_18  (cost=0.29..24809.42 rows=329660 width=12) (actual time=0.096..32.816 rows=26660.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=100 read=1722
+                    ->  Index Scan using trips_default_promo_code_idx on trips_default t_19  (cost=0.12..8.14 rows=1 width=62) (actual time=0.002..0.002 rows=0.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=1
+              ->  Index Scan using promo_codes_pkey on promo_codes p  (cost=0.14..12.74 rows=40 width=13) (actual time=0.002..0.012 rows=40.00 loops=1)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=6749 read=6
+Planning Time: 9.364 ms
+Execution Time: 169.271 ms
+=== R21 run 2 ===
+Sort  (cost=46691.20..46691.30 rows=40 width=21) (actual time=134.750..134.752 rows=40.00 loops=1)
+  Sort Key: (count(t.trip_id)) DESC
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=2500 read=24999
+  ->  HashAggregate  (cost=46689.74..46690.14 rows=40 width=21) (actual time=134.737..134.741 rows=40.00 loops=1)
+        Group Key: p.promo_code
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=2497 read=24999
+        ->  Merge Right Join  (cost=5.83..44685.67 rows=400813 width=17) (actual time=0.193..111.489 rows=399460.00 loops=1)
+              Merge Cond: ((t.promo_code)::text = (p.promo_code)::text)
+              Buffers: shared hit=2497 read=24999
+              ->  Merge Append  (cost=5.69..593653.92 rows=6000001 width=12) (actual time=0.190..91.464 rows=399460.00 loops=1)
+                    Sort Key: t.promo_code
+                    Buffers: shared hit=2495 read=24999
+                    ->  Index Scan using trips_2025_01_promo_code_idx on trips_2025_01 t_1  (cost=0.28..14032.55 rows=340660 width=12) (actual time=0.011..0.900 rows=4740.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=3 read=330
+                    ->  Index Scan using trips_2025_02_promo_code_idx on trips_2025_02 t_2  (cost=0.28..17184.39 rows=307700 width=12) (actual time=0.012..1.278 rows=6760.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=9 read=458
+                    ->  Index Scan using trips_2025_03_promo_code_idx on trips_2025_03 t_3  (cost=0.29..25361.82 rows=340660 width=12) (actual time=0.013..2.292 rows=12500.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=49 read=819
+                    ->  Index Scan using trips_2025_04_promo_code_idx on trips_2025_04 t_4  (cost=0.29..24894.36 rows=329680 width=12) (actual time=0.012..2.765 rows=15160.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=71 read=969
+                    ->  Index Scan using trips_2025_05_promo_code_idx on trips_2025_05 t_5  (cost=0.29..25685.04 rows=340660 width=12) (actual time=0.010..3.469 rows=19120.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=81 read=1225
+                    ->  Index Scan using trips_2025_06_promo_code_idx on trips_2025_06 t_6  (cost=0.29..24986.16 rows=329660 width=12) (actual time=0.010..3.917 rows=21940.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=123 read=1366
+                    ->  Index Scan using trips_2025_07_promo_code_idx on trips_2025_07 t_7  (cost=0.29..25693.54 rows=340660 width=12) (actual time=0.012..4.493 rows=24860.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=158 read=1559
+                    ->  Index Scan using trips_2025_08_promo_code_idx on trips_2025_08 t_8  (cost=0.29..25946.73 rows=340660 width=12) (actual time=0.009..5.187 rows=28940.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=205 read=1791
+                    ->  Index Scan using trips_2025_09_promo_code_idx on trips_2025_09 t_9  (cost=0.29..24982.73 rows=329660 width=12) (actual time=0.010..4.891 rows=27240.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=188 read=1661
+                    ->  Index Scan using trips_2025_10_promo_code_idx on trips_2025_10 t_10  (cost=0.29..25607.54 rows=340660 width=12) (actual time=0.011..4.855 rows=27400.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=188 read=1672
+                    ->  Index Scan using trips_2025_11_promo_code_idx on trips_2025_11 t_11  (cost=0.29..25061.25 rows=329680 width=12) (actual time=0.010..4.879 rows=26860.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=187 read=1680
+                    ->  Index Scan using trips_2025_12_promo_code_idx on trips_2025_12 t_12  (cost=0.29..25919.60 rows=340660 width=12) (actual time=0.008..5.006 rows=27800.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=184 read=1721
+                    ->  Index Scan using trips_2026_01_promo_code_idx on trips_2026_01 t_13  (cost=0.29..25928.89 rows=340660 width=12) (actual time=0.011..4.902 rows=26800.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=182 read=1697
+                    ->  Index Scan using trips_2026_02_promo_code_idx on trips_2026_02 t_14  (cost=0.29..23394.50 rows=307700 width=12) (actual time=0.008..4.176 rows=23320.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=160 read=1443
+                    ->  Index Scan using trips_2026_03_promo_code_idx on trips_2026_03 t_15  (cost=0.29..25905.95 rows=340640 width=12) (actual time=0.010..4.802 rows=26580.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=177 read=1651
+                    ->  Index Scan using trips_2026_04_promo_code_idx on trips_2026_04 t_16  (cost=0.29..25015.34 rows=329680 width=12) (actual time=0.009..4.986 rows=27300.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=182 read=1698
+                    ->  Index Scan using trips_2026_05_promo_code_idx on trips_2026_05 t_17  (cost=0.29..25797.72 rows=340660 width=12) (actual time=0.010..4.584 rows=25480.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=176 read=1608
+                    ->  Index Scan using trips_2026_06_promo_code_idx on trips_2026_06 t_18  (cost=0.29..24809.42 rows=329660 width=12) (actual time=0.010..4.674 rows=26660.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=171 read=1651
+                    ->  Index Scan using trips_default_promo_code_idx on trips_default t_19  (cost=0.12..8.14 rows=1 width=62) (actual time=0.002..0.002 rows=0.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=1
+              ->  Index Scan using promo_codes_pkey on promo_codes p  (cost=0.14..12.74 rows=40 width=13) (actual time=0.001..0.010 rows=40.00 loops=1)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=6511 read=244
+Planning Time: 8.782 ms
+Execution Time: 134.811 ms
+=== R21 run 3 ===
+Sort  (cost=46691.20..46691.30 rows=40 width=21) (actual time=136.758..136.760 rows=40.00 loops=1)
+  Sort Key: (count(t.trip_id)) DESC
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=2562 read=24937
+  ->  HashAggregate  (cost=46689.74..46690.14 rows=40 width=21) (actual time=136.743..136.747 rows=40.00 loops=1)
+        Group Key: p.promo_code
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=2559 read=24937
+        ->  Merge Right Join  (cost=5.83..44685.67 rows=400813 width=17) (actual time=0.196..113.918 rows=399460.00 loops=1)
+              Merge Cond: ((t.promo_code)::text = (p.promo_code)::text)
+              Buffers: shared hit=2559 read=24937
+              ->  Merge Append  (cost=5.69..593653.92 rows=6000001 width=12) (actual time=0.192..94.338 rows=399460.00 loops=1)
+                    Sort Key: t.promo_code
+                    Buffers: shared hit=2557 read=24937
+                    ->  Index Scan using trips_2025_01_promo_code_idx on trips_2025_01 t_1  (cost=0.28..14032.55 rows=340660 width=12) (actual time=0.010..1.008 rows=4740.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=3 read=330
+                    ->  Index Scan using trips_2025_02_promo_code_idx on trips_2025_02 t_2  (cost=0.28..17184.39 rows=307700 width=12) (actual time=0.013..1.326 rows=6760.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=9 read=458
+                    ->  Index Scan using trips_2025_03_promo_code_idx on trips_2025_03 t_3  (cost=0.29..25361.82 rows=340660 width=12) (actual time=0.011..2.694 rows=12500.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=49 read=819
+                    ->  Index Scan using trips_2025_04_promo_code_idx on trips_2025_04 t_4  (cost=0.29..24894.36 rows=329680 width=12) (actual time=0.011..2.937 rows=15160.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=71 read=969
+                    ->  Index Scan using trips_2025_05_promo_code_idx on trips_2025_05 t_5  (cost=0.29..25685.04 rows=340660 width=12) (actual time=0.010..4.442 rows=19120.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=82 read=1224
+                    ->  Index Scan using trips_2025_06_promo_code_idx on trips_2025_06 t_6  (cost=0.29..24986.16 rows=329660 width=12) (actual time=0.011..4.291 rows=21940.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=125 read=1364
+                    ->  Index Scan using trips_2025_07_promo_code_idx on trips_2025_07 t_7  (cost=0.29..25693.54 rows=340660 width=12) (actual time=0.015..4.754 rows=24860.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=164 read=1553
+                    ->  Index Scan using trips_2025_08_promo_code_idx on trips_2025_08 t_8  (cost=0.29..25946.73 rows=340660 width=12) (actual time=0.010..5.440 rows=28940.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=207 read=1789
+                    ->  Index Scan using trips_2025_09_promo_code_idx on trips_2025_09 t_9  (cost=0.29..24982.73 rows=329660 width=12) (actual time=0.011..4.933 rows=27240.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=192 read=1657
+                    ->  Index Scan using trips_2025_10_promo_code_idx on trips_2025_10 t_10  (cost=0.29..25607.54 rows=340660 width=12) (actual time=0.010..4.890 rows=27400.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=195 read=1665
+                    ->  Index Scan using trips_2025_11_promo_code_idx on trips_2025_11 t_11  (cost=0.29..25061.25 rows=329680 width=12) (actual time=0.011..5.506 rows=26860.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=187 read=1680
+                    ->  Index Scan using trips_2025_12_promo_code_idx on trips_2025_12 t_12  (cost=0.29..25919.60 rows=340660 width=12) (actual time=0.008..5.079 rows=27800.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=192 read=1713
+                    ->  Index Scan using trips_2026_01_promo_code_idx on trips_2026_01 t_13  (cost=0.29..25928.89 rows=340660 width=12) (actual time=0.010..4.998 rows=26800.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=188 read=1691
+                    ->  Index Scan using trips_2026_02_promo_code_idx on trips_2026_02 t_14  (cost=0.29..23394.50 rows=307700 width=12) (actual time=0.008..4.382 rows=23320.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=167 read=1436
+                    ->  Index Scan using trips_2026_03_promo_code_idx on trips_2026_03 t_15  (cost=0.29..25905.95 rows=340640 width=12) (actual time=0.010..4.914 rows=26580.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=178 read=1650
+                    ->  Index Scan using trips_2026_04_promo_code_idx on trips_2026_04 t_16  (cost=0.29..25015.34 rows=329680 width=12) (actual time=0.008..5.022 rows=27300.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=186 read=1694
+                    ->  Index Scan using trips_2026_05_promo_code_idx on trips_2026_05 t_17  (cost=0.29..25797.72 rows=340660 width=12) (actual time=0.010..4.727 rows=25480.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=181 read=1603
+                    ->  Index Scan using trips_2026_06_promo_code_idx on trips_2026_06 t_18  (cost=0.29..24809.42 rows=329660 width=12) (actual time=0.010..4.852 rows=26660.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=180 read=1642
+                    ->  Index Scan using trips_default_promo_code_idx on trips_default t_19  (cost=0.12..8.14 rows=1 width=62) (actual time=0.002..0.002 rows=0.00 loops=1)
+                          Index Searches: 1
+                          Buffers: shared hit=1
+              ->  Index Scan using promo_codes_pkey on promo_codes p  (cost=0.14..12.74 rows=40 width=13) (actual time=0.002..0.011 rows=40.00 loops=1)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=6448 read=307
+Planning Time: 8.916 ms
+Execution Time: 136.831 ms

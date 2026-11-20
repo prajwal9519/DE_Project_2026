@@ -1,0 +1,279 @@
+=== R25 run 1 ===
+Limit  (cost=11796.83..11802.66 rows=50 width=52) (actual time=15.821..16.793 rows=50.00 loops=1)
+  Buffers: shared hit=5677
+  ->  Gather Merge  (cost=11796.83..21340.21 rows=81941 width=52) (actual time=15.821..16.790 rows=50.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=5677
+        ->  Sort  (cost=10796.81..10882.16 rows=34142 width=52) (actual time=13.751..13.753 rows=39.33 loops=3)
+              Sort Key: (round((trips.fare_amount / NULLIF(trips.distance_km, '0'::numeric)), 2)) DESC
+              Sort Method: top-N heapsort  Memory: 30kB
+              Buffers: shared hit=5677
+              Worker 0:  Sort Method: top-N heapsort  Memory: 31kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 30kB
+              ->  Parallel Append  (cost=0.00..9662.64 rows=34142 width=52) (actual time=0.069..13.636 rows=628.00 loops=3)
+                    Buffers: shared hit=5601
+                    ->  Parallel Seq Scan on trips_2025_12 trips_12  (cost=0.00..539.06 rows=2756 width=52) (actual time=0.033..2.337 rows=111.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16922
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_03 trips_15  (cost=0.00..539.05 rows=2756 width=52) (actual time=0.068..2.429 rows=91.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16941
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_03 trips_3  (cost=0.00..539.04 rows=2754 width=52) (actual time=0.025..2.257 rows=114.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16919
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_05 trips_17  (cost=0.00..538.98 rows=2745 width=52) (actual time=0.030..2.406 rows=95.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16938
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_10 trips_10  (cost=0.00..538.93 rows=2739 width=52) (actual time=0.028..2.320 rows=119.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16914
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_01 trips_13  (cost=0.00..538.92 rows=2738 width=52) (actual time=0.027..2.390 rows=116.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16917
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_07 trips_7  (cost=0.00..538.91 rows=2736 width=52) (actual time=0.058..2.297 rows=88.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16945
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_05 trips_5  (cost=0.00..538.89 rows=2733 width=52) (actual time=0.026..2.268 rows=90.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16943
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_01 trips_1  (cost=0.00..538.78 rows=2719 width=52) (actual time=0.026..2.225 rows=119.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16914
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_08 trips_8  (cost=0.00..538.76 rows=2716 width=52) (actual time=0.028..2.306 rows=104.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16929
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_04 trips_16  (cost=0.00..521.96 rows=2671 width=52) (actual time=0.042..0.726 rows=37.33 loops=3)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 5457
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_04 trips_4  (cost=0.00..521.80 rows=2649 width=52) (actual time=0.025..1.080 rows=54.00 loops=2)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 8188
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_11 trips_11  (cost=0.00..521.80 rows=2649 width=52) (actual time=0.027..2.174 rows=108.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16376
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_09 trips_9  (cost=0.00..521.77 rows=2647 width=52) (actual time=0.033..2.245 rows=103.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16380
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_06 trips_6  (cost=0.00..521.76 rows=2646 width=52) (actual time=0.027..2.244 rows=115.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16368
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2026_06 trips_18  (cost=0.00..520.39 rows=2596 width=52) (actual time=0.031..2.283 rows=107.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16376
+                          Buffers: shared hit=307
+                    ->  Parallel Seq Scan on trips_2025_02 trips_2  (cost=0.00..486.57 rows=2476 width=52) (actual time=0.030..2.104 rows=85.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 15300
+                          Buffers: shared hit=287
+                    ->  Parallel Seq Scan on trips_2026_02 trips_14  (cost=0.00..486.56 rows=2475 width=52) (actual time=0.106..2.213 rows=99.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 15286
+                          Buffers: shared hit=287
+                    ->  Parallel Seq Scan on trips_default trips_19  (cost=0.00..0.01 rows=1 width=52) (actual time=0.000..0.001 rows=0.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+Planning:
+  Buffers: shared hit=6919
+Planning Time: 9.247 ms
+Execution Time: 16.845 ms
+=== R25 run 2 ===
+Limit  (cost=11796.83..11802.66 rows=50 width=52) (actual time=15.937..16.913 rows=50.00 loops=1)
+  Buffers: shared hit=5677
+  ->  Gather Merge  (cost=11796.83..21340.21 rows=81941 width=52) (actual time=15.937..16.905 rows=50.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=5677
+        ->  Sort  (cost=10796.81..10882.16 rows=34142 width=52) (actual time=14.057..14.059 rows=39.00 loops=3)
+              Sort Key: (round((trips.fare_amount / NULLIF(trips.distance_km, '0'::numeric)), 2)) DESC
+              Sort Method: top-N heapsort  Memory: 30kB
+              Buffers: shared hit=5677
+              Worker 0:  Sort Method: top-N heapsort  Memory: 31kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 30kB
+              ->  Parallel Append  (cost=0.00..9662.64 rows=34142 width=52) (actual time=0.071..13.931 rows=628.00 loops=3)
+                    Buffers: shared hit=5601
+                    ->  Parallel Seq Scan on trips_2025_12 trips_12  (cost=0.00..539.06 rows=2756 width=52) (actual time=0.032..2.332 rows=111.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16922
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_03 trips_15  (cost=0.00..539.05 rows=2756 width=52) (actual time=0.066..2.360 rows=91.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16941
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_03 trips_3  (cost=0.00..539.04 rows=2754 width=52) (actual time=0.025..2.245 rows=114.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16919
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_05 trips_17  (cost=0.00..538.98 rows=2745 width=52) (actual time=0.028..2.338 rows=95.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16938
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_10 trips_10  (cost=0.00..538.93 rows=2739 width=52) (actual time=0.028..2.313 rows=119.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16914
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_01 trips_13  (cost=0.00..538.92 rows=2738 width=52) (actual time=0.027..2.531 rows=116.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16917
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_07 trips_7  (cost=0.00..538.91 rows=2736 width=52) (actual time=0.058..2.277 rows=88.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16945
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_05 trips_5  (cost=0.00..538.89 rows=2733 width=52) (actual time=0.030..2.624 rows=90.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16943
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_01 trips_1  (cost=0.00..538.78 rows=2719 width=52) (actual time=0.026..2.229 rows=119.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16914
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_08 trips_8  (cost=0.00..538.76 rows=2716 width=52) (actual time=0.031..2.634 rows=104.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16929
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_04 trips_16  (cost=0.00..521.96 rows=2671 width=52) (actual time=0.014..0.736 rows=37.33 loops=3)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 5457
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_04 trips_4  (cost=0.00..521.80 rows=2649 width=52) (actual time=0.062..1.124 rows=54.00 loops=2)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 8188
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_11 trips_11  (cost=0.00..521.80 rows=2649 width=52) (actual time=0.028..2.232 rows=108.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16376
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_09 trips_9  (cost=0.00..521.77 rows=2647 width=52) (actual time=0.033..2.251 rows=103.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16380
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_06 trips_6  (cost=0.00..521.76 rows=2646 width=52) (actual time=0.027..2.262 rows=115.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16368
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2026_06 trips_18  (cost=0.00..520.39 rows=2596 width=52) (actual time=0.032..2.292 rows=107.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16376
+                          Buffers: shared hit=307
+                    ->  Parallel Seq Scan on trips_2025_02 trips_2  (cost=0.00..486.57 rows=2476 width=52) (actual time=0.029..2.130 rows=85.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 15300
+                          Buffers: shared hit=287
+                    ->  Parallel Seq Scan on trips_2026_02 trips_14  (cost=0.00..486.56 rows=2475 width=52) (actual time=0.114..2.210 rows=99.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 15286
+                          Buffers: shared hit=287
+                    ->  Parallel Seq Scan on trips_default trips_19  (cost=0.00..0.01 rows=1 width=52) (actual time=0.000..0.000 rows=0.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+Planning:
+  Buffers: shared hit=6919
+Planning Time: 8.758 ms
+Execution Time: 16.965 ms
+=== R25 run 3 ===
+Limit  (cost=11796.83..11802.66 rows=50 width=52) (actual time=16.179..17.217 rows=50.00 loops=1)
+  Buffers: shared hit=5677
+  ->  Gather Merge  (cost=11796.83..21340.21 rows=81941 width=52) (actual time=16.178..17.214 rows=50.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=5677
+        ->  Sort  (cost=10796.81..10882.16 rows=34142 width=52) (actual time=14.197..14.199 rows=38.67 loops=3)
+              Sort Key: (round((trips.fare_amount / NULLIF(trips.distance_km, '0'::numeric)), 2)) DESC
+              Sort Method: top-N heapsort  Memory: 30kB
+              Buffers: shared hit=5677
+              Worker 0:  Sort Method: top-N heapsort  Memory: 31kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 30kB
+              ->  Parallel Append  (cost=0.00..9662.64 rows=34142 width=52) (actual time=0.068..14.073 rows=628.00 loops=3)
+                    Buffers: shared hit=5601
+                    ->  Parallel Seq Scan on trips_2025_12 trips_12  (cost=0.00..539.06 rows=2756 width=52) (actual time=0.034..2.374 rows=111.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16922
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_03 trips_15  (cost=0.00..539.05 rows=2756 width=52) (actual time=0.067..2.438 rows=91.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16941
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_03 trips_3  (cost=0.00..539.04 rows=2754 width=52) (actual time=0.026..2.284 rows=114.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16919
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_05 trips_17  (cost=0.00..538.98 rows=2745 width=52) (actual time=0.029..2.415 rows=95.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16938
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_10 trips_10  (cost=0.00..538.93 rows=2739 width=52) (actual time=0.028..2.409 rows=119.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16914
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_01 trips_13  (cost=0.00..538.92 rows=2738 width=52) (actual time=0.027..2.538 rows=116.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16917
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_07 trips_7  (cost=0.00..538.91 rows=2736 width=52) (actual time=0.060..2.338 rows=88.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16945
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_05 trips_5  (cost=0.00..538.89 rows=2733 width=52) (actual time=0.028..2.371 rows=90.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16943
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_01 trips_1  (cost=0.00..538.78 rows=2719 width=52) (actual time=0.027..2.272 rows=119.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16914
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2025_08 trips_8  (cost=0.00..538.76 rows=2716 width=52) (actual time=0.028..2.388 rows=104.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16929
+                          Buffers: shared hit=318
+                    ->  Parallel Seq Scan on trips_2026_04 trips_16  (cost=0.00..521.96 rows=2671 width=52) (actual time=0.023..0.740 rows=37.33 loops=3)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 5457
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_04 trips_4  (cost=0.00..521.80 rows=2649 width=52) (actual time=0.020..1.102 rows=54.00 loops=2)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 8188
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_11 trips_11  (cost=0.00..521.80 rows=2649 width=52) (actual time=0.028..2.194 rows=108.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16376
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_09 trips_9  (cost=0.00..521.77 rows=2647 width=52) (actual time=0.033..3.011 rows=103.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16380
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2025_06 trips_6  (cost=0.00..521.76 rows=2646 width=52) (actual time=0.027..2.319 rows=115.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16368
+                          Buffers: shared hit=308
+                    ->  Parallel Seq Scan on trips_2026_06 trips_18  (cost=0.00..520.39 rows=2596 width=52) (actual time=0.030..2.211 rows=107.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 16376
+                          Buffers: shared hit=307
+                    ->  Parallel Seq Scan on trips_2025_02 trips_2  (cost=0.00..486.57 rows=2476 width=52) (actual time=0.028..2.032 rows=85.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 15300
+                          Buffers: shared hit=287
+                    ->  Parallel Seq Scan on trips_2026_02 trips_14  (cost=0.00..486.56 rows=2475 width=52) (actual time=0.101..2.127 rows=99.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+                          Rows Removed by Filter: 15286
+                          Buffers: shared hit=287
+                    ->  Parallel Seq Scan on trips_default trips_19  (cost=0.00..0.01 rows=1 width=52) (actual time=0.000..0.000 rows=0.00 loops=1)
+                          Filter: (((status)::text = 'COMPLETED'::text) AND ((fare_amount / NULLIF(distance_km, '0'::numeric)) > '100'::numeric))
+Planning:
+  Buffers: shared hit=6919
+Planning Time: 8.665 ms
+Execution Time: 17.268 ms

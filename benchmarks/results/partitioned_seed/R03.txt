@@ -1,0 +1,27 @@
+=== R03 run 1 ===
+Index Scan using idx_riders_lower_email on riders  (cost=0.41..8.43 rows=1 width=20) (actual time=0.418..0.418 rows=1.00 loops=1)
+  Index Cond: (lower((email)::text) = 'karan.verma1042@mail.com'::text)
+  Index Searches: 1
+  Buffers: shared hit=1 read=3
+Planning:
+  Buffers: shared hit=170
+Planning Time: 0.332 ms
+Execution Time: 0.434 ms
+=== R03 run 2 ===
+Index Scan using idx_riders_lower_email on riders  (cost=0.41..8.43 rows=1 width=20) (actual time=0.009..0.009 rows=1.00 loops=1)
+  Index Cond: (lower((email)::text) = 'karan.verma1042@mail.com'::text)
+  Index Searches: 1
+  Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=170
+Planning Time: 0.291 ms
+Execution Time: 0.025 ms
+=== R03 run 3 ===
+Index Scan using idx_riders_lower_email on riders  (cost=0.41..8.43 rows=1 width=20) (actual time=0.008..0.008 rows=1.00 loops=1)
+  Index Cond: (lower((email)::text) = 'karan.verma1042@mail.com'::text)
+  Index Searches: 1
+  Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=170
+Planning Time: 0.282 ms
+Execution Time: 0.024 ms

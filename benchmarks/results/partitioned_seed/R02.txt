@@ -1,0 +1,51 @@
+=== R02 run 1 ===
+GroupAggregate  (cost=0.29..78.05 rows=1 width=44) (actual time=0.198..0.199 rows=1.00 loops=1)
+  Buffers: shared hit=1 read=2
+  ->  Append  (cost=0.29..77.93 rows=22 width=10) (actual time=0.192..0.194 rows=5.00 loops=1)
+        Buffers: shared hit=1 read=2
+        Subplans Removed: 18
+        ->  Index Only Scan using trips_2026_03_driver_id_requested_at_status_fare_amount_idx on trips_2026_03 trips_1  (cost=0.30..4.42 rows=4 width=10) (actual time=0.192..0.193 rows=5.00 loops=1)
+              Index Cond: ((driver_id = 217) AND (requested_at >= ('2026-03-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (requested_at < ('2026-04-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+              Filter: ((status)::text = 'COMPLETED'::text)
+              Rows Removed by Filter: 1
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+Planning:
+  Buffers: shared hit=7066 read=39
+Planning Time: 16.192 ms
+Execution Time: 0.231 ms
+=== R02 run 2 ===
+GroupAggregate  (cost=0.29..78.05 rows=1 width=44) (actual time=0.011..0.011 rows=1.00 loops=1)
+  Buffers: shared hit=3
+  ->  Append  (cost=0.29..77.93 rows=22 width=10) (actual time=0.006..0.006 rows=5.00 loops=1)
+        Buffers: shared hit=3
+        Subplans Removed: 18
+        ->  Index Only Scan using trips_2026_03_driver_id_requested_at_status_fare_amount_idx on trips_2026_03 trips_1  (cost=0.30..4.42 rows=4 width=10) (actual time=0.005..0.006 rows=5.00 loops=1)
+              Index Cond: ((driver_id = 217) AND (requested_at >= ('2026-03-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (requested_at < ('2026-04-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+              Filter: ((status)::text = 'COMPLETED'::text)
+              Rows Removed by Filter: 1
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=7105
+Planning Time: 9.802 ms
+Execution Time: 0.037 ms
+=== R02 run 3 ===
+GroupAggregate  (cost=0.29..78.05 rows=1 width=44) (actual time=0.010..0.010 rows=1.00 loops=1)
+  Buffers: shared hit=3
+  ->  Append  (cost=0.29..77.93 rows=22 width=10) (actual time=0.005..0.005 rows=5.00 loops=1)
+        Buffers: shared hit=3
+        Subplans Removed: 18
+        ->  Index Only Scan using trips_2026_03_driver_id_requested_at_status_fare_amount_idx on trips_2026_03 trips_1  (cost=0.30..4.42 rows=4 width=10) (actual time=0.004..0.005 rows=5.00 loops=1)
+              Index Cond: ((driver_id = 217) AND (requested_at >= ('2026-03-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (requested_at < ('2026-04-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+              Filter: ((status)::text = 'COMPLETED'::text)
+              Rows Removed by Filter: 1
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=7105
+Planning Time: 9.618 ms
+Execution Time: 0.034 ms

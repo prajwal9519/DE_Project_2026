@@ -1,0 +1,261 @@
+=== R01 run 1 ===
+Limit  (cost=149.98..150.03 rows=19 width=121) (actual time=7.313..7.316 rows=7.00 loops=1)
+  Buffers: shared hit=10 read=36
+  ->  Sort  (cost=149.98..150.03 rows=19 width=121) (actual time=7.312..7.315 rows=7.00 loops=1)
+        Sort Key: trips.requested_at DESC
+        Sort Method: quicksort  Memory: 26kB
+        Buffers: shared hit=10 read=36
+        ->  Append  (cost=0.29..149.58 rows=19 width=121) (actual time=0.319..7.292 rows=7.00 loops=1)
+              Buffers: shared hit=7 read=36
+              ->  Index Scan using trips_2025_01_rider_id_requested_at_idx on trips_2025_01 trips_1  (cost=0.29..8.30 rows=1 width=114) (actual time=0.319..0.319 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=2
+              ->  Index Scan using trips_2025_02_rider_id_requested_at_idx on trips_2025_02 trips_2  (cost=0.29..8.30 rows=1 width=114) (actual time=0.226..0.226 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=2
+              ->  Index Scan using trips_2025_03_rider_id_requested_at_idx on trips_2025_03 trips_3  (cost=0.29..8.30 rows=1 width=114) (actual time=0.271..0.271 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=2
+              ->  Index Scan using trips_2025_04_rider_id_requested_at_idx on trips_2025_04 trips_4  (cost=0.29..8.30 rows=1 width=114) (actual time=0.412..0.412 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=2
+              ->  Index Scan using trips_2025_05_rider_id_requested_at_idx on trips_2025_05 trips_5  (cost=0.29..8.30 rows=1 width=114) (actual time=0.576..0.576 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2025_06_rider_id_requested_at_idx on trips_2025_06 trips_6  (cost=0.29..8.30 rows=1 width=114) (actual time=1.865..1.865 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2025_07_rider_id_requested_at_idx on trips_2025_07 trips_7  (cost=0.29..8.30 rows=1 width=114) (actual time=0.338..0.338 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2025_08_rider_id_requested_at_idx on trips_2025_08 trips_8  (cost=0.29..8.30 rows=1 width=114) (actual time=0.546..0.546 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2025_09_rider_id_requested_at_idx on trips_2025_09 trips_9  (cost=0.29..8.30 rows=1 width=114) (actual time=0.230..0.231 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=2
+              ->  Index Scan using trips_2025_10_rider_id_requested_at_idx on trips_2025_10 trips_10  (cost=0.29..8.30 rows=1 width=114) (actual time=0.283..0.283 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2025_11_rider_id_requested_at_idx on trips_2025_11 trips_11  (cost=0.29..8.30 rows=1 width=114) (actual time=0.358..0.358 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2025_12_rider_id_requested_at_idx on trips_2025_12 trips_12  (cost=0.29..8.30 rows=1 width=114) (actual time=0.350..0.350 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=2
+              ->  Index Scan using trips_2026_01_rider_id_requested_at_idx on trips_2026_01 trips_13  (cost=0.29..8.30 rows=1 width=114) (actual time=0.282..0.282 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2026_02_rider_id_requested_at_idx on trips_2026_02 trips_14  (cost=0.29..8.30 rows=1 width=114) (actual time=0.283..0.283 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2026_03_rider_id_requested_at_idx on trips_2026_03 trips_15  (cost=0.29..8.30 rows=1 width=114) (actual time=0.248..0.248 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2026_04_rider_id_requested_at_idx on trips_2026_04 trips_16  (cost=0.29..8.30 rows=1 width=114) (actual time=0.305..0.305 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2026_05_rider_id_requested_at_idx on trips_2026_05 trips_17  (cost=0.29..8.30 rows=1 width=114) (actual time=0.205..0.205 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=2
+              ->  Index Scan using trips_2026_06_rider_id_requested_at_idx on trips_2026_06 trips_18  (cost=0.29..8.30 rows=1 width=114) (actual time=0.177..0.177 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=2
+              ->  Seq Scan on trips_default trips_19  (cost=0.00..0.00 rows=1 width=270) (actual time=0.008..0.009 rows=0.00 loops=1)
+                    Filter: (rider_id = 1042)
+Planning:
+  Buffers: shared hit=7553 read=26
+Planning Time: 24.304 ms
+Execution Time: 7.394 ms
+=== R01 run 2 ===
+Limit  (cost=149.98..150.03 rows=19 width=121) (actual time=0.143..0.145 rows=7.00 loops=1)
+  Buffers: shared hit=46
+  ->  Sort  (cost=149.98..150.03 rows=19 width=121) (actual time=0.142..0.144 rows=7.00 loops=1)
+        Sort Key: trips.requested_at DESC
+        Sort Method: quicksort  Memory: 26kB
+        Buffers: shared hit=46
+        ->  Append  (cost=0.29..149.58 rows=19 width=121) (actual time=0.007..0.129 rows=7.00 loops=1)
+              Buffers: shared hit=43
+              ->  Index Scan using trips_2025_01_rider_id_requested_at_idx on trips_2025_01 trips_1  (cost=0.29..8.30 rows=1 width=114) (actual time=0.007..0.007 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2025_02_rider_id_requested_at_idx on trips_2025_02 trips_2  (cost=0.29..8.30 rows=1 width=114) (actual time=0.009..0.009 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2025_03_rider_id_requested_at_idx on trips_2025_03 trips_3  (cost=0.29..8.30 rows=1 width=114) (actual time=0.009..0.009 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2025_04_rider_id_requested_at_idx on trips_2025_04 trips_4  (cost=0.29..8.30 rows=1 width=114) (actual time=0.009..0.009 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2025_05_rider_id_requested_at_idx on trips_2025_05 trips_5  (cost=0.29..8.30 rows=1 width=114) (actual time=0.006..0.006 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_06_rider_id_requested_at_idx on trips_2025_06 trips_6  (cost=0.29..8.30 rows=1 width=114) (actual time=0.006..0.006 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_07_rider_id_requested_at_idx on trips_2025_07 trips_7  (cost=0.29..8.30 rows=1 width=114) (actual time=0.006..0.006 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_08_rider_id_requested_at_idx on trips_2025_08 trips_8  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_09_rider_id_requested_at_idx on trips_2025_09 trips_9  (cost=0.29..8.30 rows=1 width=114) (actual time=0.008..0.008 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2025_10_rider_id_requested_at_idx on trips_2025_10 trips_10  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_11_rider_id_requested_at_idx on trips_2025_11 trips_11  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_12_rider_id_requested_at_idx on trips_2025_12 trips_12  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2026_01_rider_id_requested_at_idx on trips_2026_01 trips_13  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2026_02_rider_id_requested_at_idx on trips_2026_02 trips_14  (cost=0.29..8.30 rows=1 width=114) (actual time=0.006..0.006 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2026_03_rider_id_requested_at_idx on trips_2026_03 trips_15  (cost=0.29..8.30 rows=1 width=114) (actual time=0.012..0.012 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2026_04_rider_id_requested_at_idx on trips_2026_04 trips_16  (cost=0.29..8.30 rows=1 width=114) (actual time=0.004..0.004 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2026_05_rider_id_requested_at_idx on trips_2026_05 trips_17  (cost=0.29..8.30 rows=1 width=114) (actual time=0.006..0.006 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2026_06_rider_id_requested_at_idx on trips_2026_06 trips_18  (cost=0.29..8.30 rows=1 width=114) (actual time=0.008..0.008 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Seq Scan on trips_default trips_19  (cost=0.00..0.00 rows=1 width=270) (actual time=0.003..0.004 rows=0.00 loops=1)
+                    Filter: (rider_id = 1042)
+Planning:
+  Buffers: shared hit=7579
+Planning Time: 12.807 ms
+Execution Time: 0.213 ms
+=== R01 run 3 ===
+Limit  (cost=149.98..150.03 rows=19 width=121) (actual time=0.118..0.120 rows=7.00 loops=1)
+  Buffers: shared hit=46
+  ->  Sort  (cost=149.98..150.03 rows=19 width=121) (actual time=0.117..0.118 rows=7.00 loops=1)
+        Sort Key: trips.requested_at DESC
+        Sort Method: quicksort  Memory: 26kB
+        Buffers: shared hit=46
+        ->  Append  (cost=0.29..149.58 rows=19 width=121) (actual time=0.006..0.106 rows=7.00 loops=1)
+              Buffers: shared hit=43
+              ->  Index Scan using trips_2025_01_rider_id_requested_at_idx on trips_2025_01 trips_1  (cost=0.29..8.30 rows=1 width=114) (actual time=0.006..0.006 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2025_02_rider_id_requested_at_idx on trips_2025_02 trips_2  (cost=0.29..8.30 rows=1 width=114) (actual time=0.007..0.007 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2025_03_rider_id_requested_at_idx on trips_2025_03 trips_3  (cost=0.29..8.30 rows=1 width=114) (actual time=0.007..0.007 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2025_04_rider_id_requested_at_idx on trips_2025_04 trips_4  (cost=0.29..8.30 rows=1 width=114) (actual time=0.008..0.008 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2025_05_rider_id_requested_at_idx on trips_2025_05 trips_5  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_06_rider_id_requested_at_idx on trips_2025_06 trips_6  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_07_rider_id_requested_at_idx on trips_2025_07 trips_7  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_08_rider_id_requested_at_idx on trips_2025_08 trips_8  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_09_rider_id_requested_at_idx on trips_2025_09 trips_9  (cost=0.29..8.30 rows=1 width=114) (actual time=0.007..0.007 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2025_10_rider_id_requested_at_idx on trips_2025_10 trips_10  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_11_rider_id_requested_at_idx on trips_2025_11 trips_11  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2025_12_rider_id_requested_at_idx on trips_2025_12 trips_12  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using trips_2026_01_rider_id_requested_at_idx on trips_2026_01 trips_13  (cost=0.29..8.30 rows=1 width=114) (actual time=0.004..0.004 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2026_02_rider_id_requested_at_idx on trips_2026_02 trips_14  (cost=0.29..8.30 rows=1 width=114) (actual time=0.006..0.006 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2026_03_rider_id_requested_at_idx on trips_2026_03 trips_15  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2026_04_rider_id_requested_at_idx on trips_2026_04 trips_16  (cost=0.29..8.30 rows=1 width=114) (actual time=0.004..0.004 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2026_05_rider_id_requested_at_idx on trips_2026_05 trips_17  (cost=0.29..8.30 rows=1 width=114) (actual time=0.005..0.005 rows=0.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=2
+              ->  Index Scan using trips_2026_06_rider_id_requested_at_idx on trips_2026_06 trips_18  (cost=0.29..8.30 rows=1 width=114) (actual time=0.007..0.007 rows=1.00 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Seq Scan on trips_default trips_19  (cost=0.00..0.00 rows=1 width=270) (actual time=0.002..0.002 rows=0.00 loops=1)
+                    Filter: (rider_id = 1042)
+Planning:
+  Buffers: shared hit=7579
+Planning Time: 11.429 ms
+Execution Time: 0.185 ms

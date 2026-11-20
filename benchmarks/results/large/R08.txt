@@ -1,0 +1,63 @@
+=== R08 run 1 ===
+Sort  (cost=344993.02..346194.17 rows=480460 width=52) (actual time=373.275..373.279 rows=24.00 loops=1)
+  Sort Key: (date_trunc('month'::text, paid_at)), method
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=6 read=22907 written=453
+  ->  HashAggregate  (cost=257883.77..283229.88 rows=480460 width=52) (actual time=373.165..373.250 rows=24.00 loops=1)
+        Group Key: date_trunc('month'::text, paid_at), method
+        Planned Partitions: 32  Batches: 1  Memory Usage: 545kB
+        Buffers: shared read=22907 written=453
+        ->  Bitmap Heap Scan on payments  (cost=46502.20..138890.57 rows=1547879 width=18) (actual time=83.382..245.727 rows=1548760.00 loops=1)
+              Recheck Cond: ((paid_at >= ('2026-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (paid_at < ('2027-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND ((payment_status)::text = 'SUCCESS'::text))
+              Heap Blocks: exact=15275
+              Buffers: shared read=22907 written=453
+              ->  Bitmap Index Scan on idx_payments_success_paid_at  (cost=0.00..46115.23 rows=1547879 width=0) (actual time=82.214..82.215 rows=1548760.00 loops=1)
+                    Index Cond: ((paid_at >= ('2026-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (paid_at < ('2027-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+                    Index Searches: 1
+                    Buffers: shared read=7632 written=377
+Planning:
+  Buffers: shared hit=194 read=4
+Planning Time: 0.910 ms
+Execution Time: 373.368 ms
+=== R08 run 2 ===
+Sort  (cost=344993.02..346194.17 rows=480460 width=52) (actual time=335.100..335.104 rows=24.00 loops=1)
+  Sort Key: (date_trunc('month'::text, paid_at)), method
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=6 read=22907
+  ->  HashAggregate  (cost=257883.77..283229.88 rows=480460 width=52) (actual time=334.991..335.080 rows=24.00 loops=1)
+        Group Key: date_trunc('month'::text, paid_at), method
+        Planned Partitions: 32  Batches: 1  Memory Usage: 545kB
+        Buffers: shared read=22907
+        ->  Bitmap Heap Scan on payments  (cost=46502.20..138890.57 rows=1547879 width=18) (actual time=45.897..205.999 rows=1548760.00 loops=1)
+              Recheck Cond: ((paid_at >= ('2026-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (paid_at < ('2027-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND ((payment_status)::text = 'SUCCESS'::text))
+              Heap Blocks: exact=15275
+              Buffers: shared read=22907
+              ->  Bitmap Index Scan on idx_payments_success_paid_at  (cost=0.00..46115.23 rows=1547879 width=0) (actual time=44.774..44.775 rows=1548760.00 loops=1)
+                    Index Cond: ((paid_at >= ('2026-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (paid_at < ('2027-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+                    Index Searches: 1
+                    Buffers: shared read=7632
+Planning:
+  Buffers: shared hit=177 read=21
+Planning Time: 0.860 ms
+Execution Time: 335.168 ms
+=== R08 run 3 ===
+Sort  (cost=344993.02..346194.17 rows=480460 width=52) (actual time=354.954..354.956 rows=24.00 loops=1)
+  Sort Key: (date_trunc('month'::text, paid_at)), method
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=6 read=22907
+  ->  HashAggregate  (cost=257883.77..283229.88 rows=480460 width=52) (actual time=354.858..354.928 rows=24.00 loops=1)
+        Group Key: date_trunc('month'::text, paid_at), method
+        Planned Partitions: 32  Batches: 1  Memory Usage: 545kB
+        Buffers: shared read=22907
+        ->  Bitmap Heap Scan on payments  (cost=46502.20..138890.57 rows=1547879 width=18) (actual time=54.013..223.510 rows=1548760.00 loops=1)
+              Recheck Cond: ((paid_at >= ('2026-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (paid_at < ('2027-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND ((payment_status)::text = 'SUCCESS'::text))
+              Heap Blocks: exact=15275
+              Buffers: shared read=22907
+              ->  Bitmap Index Scan on idx_payments_success_paid_at  (cost=0.00..46115.23 rows=1547879 width=0) (actual time=52.817..52.818 rows=1548760.00 loops=1)
+                    Index Cond: ((paid_at >= ('2026-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (paid_at < ('2027-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+                    Index Searches: 1
+                    Buffers: shared read=7632
+Planning:
+  Buffers: shared hit=177 read=21
+Planning Time: 0.791 ms
+Execution Time: 355.035 ms

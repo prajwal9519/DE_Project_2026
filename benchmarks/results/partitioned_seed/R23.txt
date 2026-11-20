@@ -1,0 +1,102 @@
+=== R23 run 1 ===
+GroupAggregate  (cost=12100.28..14337.92 rows=99450 width=20) (actual time=34.937..41.227 rows=60.00 loops=1)
+  Group Key: trips.city_id, (date_trunc('month'::text, trips.requested_at))
+  Buffers: shared hit=1862, temp read=366 written=367
+  ->  Sort  (cost=12100.28..12348.91 rows=99451 width=16) (actual time=34.760..37.618 rows=99450.00 loops=1)
+        Sort Key: trips.city_id, (date_trunc('month'::text, trips.requested_at)), trips.rider_id
+        Sort Method: external merge  Disk: 2928kB
+        Buffers: shared hit=1862, temp read=366 written=367
+        ->  Append  (cost=0.00..3845.01 rows=99451 width=16) (actual time=0.005..12.740 rows=99450.00 loops=1)
+              Buffers: shared hit=1856
+              ->  Seq Scan on trips_2026_01 trips_1  (cost=0.00..573.50 rows=17033 width=16) (actual time=0.005..1.706 rows=17033.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=318
+              ->  Seq Scan on trips_2026_02 trips_2  (cost=0.00..517.77 rows=15385 width=16) (actual time=0.003..1.524 rows=15385.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=287
+              ->  Seq Scan on trips_2026_03 trips_3  (cost=0.00..573.48 rows=17032 width=16) (actual time=0.003..1.673 rows=17032.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=318
+              ->  Seq Scan on trips_2026_04 trips_4  (cost=0.00..555.26 rows=16484 width=16) (actual time=0.002..1.616 rows=16484.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=308
+              ->  Seq Scan on trips_2026_05 trips_5  (cost=0.00..573.50 rows=17033 width=16) (actual time=0.004..1.689 rows=17033.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=318
+              ->  Seq Scan on trips_2026_06 trips_6  (cost=0.00..554.25 rows=16483 width=16) (actual time=0.004..1.615 rows=16483.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=307
+              ->  Seq Scan on trips_default trips_7  (cost=0.00..0.00 rows=1 width=16) (actual time=0.006..0.006 rows=0.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+Planning:
+  Buffers: shared hit=2865
+Planning Time: 3.742 ms
+Execution Time: 41.860 ms
+=== R23 run 2 ===
+GroupAggregate  (cost=12100.28..14337.92 rows=99450 width=20) (actual time=34.571..40.982 rows=60.00 loops=1)
+  Group Key: trips.city_id, (date_trunc('month'::text, trips.requested_at))
+  Buffers: shared hit=1862, temp read=366 written=367
+  ->  Sort  (cost=12100.28..12348.91 rows=99451 width=16) (actual time=34.394..37.298 rows=99450.00 loops=1)
+        Sort Key: trips.city_id, (date_trunc('month'::text, trips.requested_at)), trips.rider_id
+        Sort Method: external merge  Disk: 2928kB
+        Buffers: shared hit=1862, temp read=366 written=367
+        ->  Append  (cost=0.00..3845.01 rows=99451 width=16) (actual time=0.006..12.926 rows=99450.00 loops=1)
+              Buffers: shared hit=1856
+              ->  Seq Scan on trips_2026_01 trips_1  (cost=0.00..573.50 rows=17033 width=16) (actual time=0.005..1.735 rows=17033.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=318
+              ->  Seq Scan on trips_2026_02 trips_2  (cost=0.00..517.77 rows=15385 width=16) (actual time=0.002..1.524 rows=15385.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=287
+              ->  Seq Scan on trips_2026_03 trips_3  (cost=0.00..573.48 rows=17032 width=16) (actual time=0.003..1.700 rows=17032.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=318
+              ->  Seq Scan on trips_2026_04 trips_4  (cost=0.00..555.26 rows=16484 width=16) (actual time=0.003..1.660 rows=16484.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=308
+              ->  Seq Scan on trips_2026_05 trips_5  (cost=0.00..573.50 rows=17033 width=16) (actual time=0.002..1.716 rows=17033.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=318
+              ->  Seq Scan on trips_2026_06 trips_6  (cost=0.00..554.25 rows=16483 width=16) (actual time=0.005..1.642 rows=16483.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=307
+              ->  Seq Scan on trips_default trips_7  (cost=0.00..0.00 rows=1 width=16) (actual time=0.004..0.004 rows=0.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+Planning:
+  Buffers: shared hit=2865
+Planning Time: 3.611 ms
+Execution Time: 41.943 ms
+=== R23 run 3 ===
+GroupAggregate  (cost=12100.28..14337.92 rows=99450 width=20) (actual time=35.314..41.822 rows=60.00 loops=1)
+  Group Key: trips.city_id, (date_trunc('month'::text, trips.requested_at))
+  Buffers: shared hit=1862, temp read=366 written=367
+  ->  Sort  (cost=12100.28..12348.91 rows=99451 width=16) (actual time=35.138..38.088 rows=99450.00 loops=1)
+        Sort Key: trips.city_id, (date_trunc('month'::text, trips.requested_at)), trips.rider_id
+        Sort Method: external merge  Disk: 2928kB
+        Buffers: shared hit=1862, temp read=366 written=367
+        ->  Append  (cost=0.00..3845.01 rows=99451 width=16) (actual time=0.005..12.934 rows=99450.00 loops=1)
+              Buffers: shared hit=1856
+              ->  Seq Scan on trips_2026_01 trips_1  (cost=0.00..573.50 rows=17033 width=16) (actual time=0.005..1.773 rows=17033.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=318
+              ->  Seq Scan on trips_2026_02 trips_2  (cost=0.00..517.77 rows=15385 width=16) (actual time=0.002..1.555 rows=15385.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=287
+              ->  Seq Scan on trips_2026_03 trips_3  (cost=0.00..573.48 rows=17032 width=16) (actual time=0.003..1.699 rows=17032.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=318
+              ->  Seq Scan on trips_2026_04 trips_4  (cost=0.00..555.26 rows=16484 width=16) (actual time=0.002..1.617 rows=16484.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=308
+              ->  Seq Scan on trips_2026_05 trips_5  (cost=0.00..573.50 rows=17033 width=16) (actual time=0.002..1.707 rows=17033.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=318
+              ->  Seq Scan on trips_2026_06 trips_6  (cost=0.00..554.25 rows=16483 width=16) (actual time=0.003..1.659 rows=16483.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Buffers: shared hit=307
+              ->  Seq Scan on trips_default trips_7  (cost=0.00..0.00 rows=1 width=16) (actual time=0.002..0.002 rows=0.00 loops=1)
+                    Filter: (requested_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+Planning:
+  Buffers: shared hit=2865
+Planning Time: 3.532 ms
+Execution Time: 42.730 ms

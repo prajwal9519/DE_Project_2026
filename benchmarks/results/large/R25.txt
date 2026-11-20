@@ -1,0 +1,258 @@
+=== R25 run 1 ===
+Limit  (cost=5.55..7.79 rows=50 width=52) (actual time=3.496..3.504 rows=50.00 loops=1)
+  Buffers: shared hit=19 read=36
+  ->  Merge Append  (cost=5.55..60154.52 rows=1345726 width=52) (actual time=3.496..3.501 rows=50.00 loops=1)
+        Sort Key: (round((trips.fare_amount / NULLIF(trips.distance_km, '0'::numeric)), 2)) DESC
+        Buffers: shared hit=19 read=36
+        ->  Index Only Scan using trips_2025_01_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_01 trips_1  (cost=0.28..1402.17 rows=75567 width=52) (actual time=0.208..0.208 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_02_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_02 trips_2  (cost=0.28..1262.40 rows=68669 width=52) (actual time=0.223..0.223 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_03_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_03 trips_3  (cost=0.28..1433.01 rows=77493 width=52) (actual time=0.562..0.563 rows=10.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_04_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_04 trips_4  (cost=0.28..1371.50 rows=74067 width=52) (actual time=0.076..0.076 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_05_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_05 trips_5  (cost=0.28..1387.19 rows=75765 width=52) (actual time=0.166..0.166 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_06_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_06 trips_6  (cost=0.28..1371.83 rows=74026 width=52) (actual time=0.368..0.368 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_07_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_07 trips_7  (cost=0.28..1395.41 rows=76254 width=52) (actual time=0.142..0.142 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_08_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_08 trips_8  (cost=0.28..1380.38 rows=74834 width=52) (actual time=0.134..0.134 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_09_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_09 trips_9  (cost=0.28..1365.95 rows=74032 width=52) (actual time=0.044..0.044 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_10_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_10 trips_10  (cost=0.28..1417.25 rows=76341 width=52) (actual time=0.062..0.062 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_11_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_11 trips_11  (cost=0.28..1378.52 rows=74500 width=52) (actual time=0.152..0.152 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2025_12_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_12 trips_12  (cost=0.28..1425.42 rows=77244 width=52) (actual time=0.284..0.284 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2026_01_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_01 trips_13  (cost=0.28..1422.31 rows=76907 width=52) (actual time=0.049..0.049 rows=21.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2026_02_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_02 trips_14  (cost=0.28..1272.40 rows=68927 width=52) (actual time=0.154..0.154 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2026_03_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_03 trips_15  (cost=0.28..1416.17 rows=77408 width=52) (actual time=0.335..0.336 rows=21.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2026_04_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_04 trips_16  (cost=0.28..1394.37 rows=75311 width=52) (actual time=0.120..0.120 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2026_05_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_05 trips_17  (cost=0.28..1419.64 rows=77306 width=52) (actual time=0.174..0.174 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_2026_06_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_06 trips_18  (cost=0.28..1318.68 rows=71074 width=52) (actual time=0.239..0.239 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=2
+        ->  Index Only Scan using trips_default_round_trip_id_city_id_distance_km_fare_amount_idx on trips_default trips_19  (cost=0.12..8.15 rows=1 width=52) (actual time=0.003..0.003 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=6939 read=4
+Planning Time: 9.828 ms
+Execution Time: 3.551 ms
+=== R25 run 2 ===
+Limit  (cost=5.55..7.79 rows=50 width=52) (actual time=0.410..0.418 rows=50.00 loops=1)
+  Buffers: shared hit=55
+  ->  Merge Append  (cost=5.55..60154.52 rows=1345726 width=52) (actual time=0.410..0.416 rows=50.00 loops=1)
+        Sort Key: (round((trips.fare_amount / NULLIF(trips.distance_km, '0'::numeric)), 2)) DESC
+        Buffers: shared hit=55
+        ->  Index Only Scan using trips_2025_01_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_01 trips_1  (cost=0.28..1402.17 rows=75567 width=52) (actual time=0.025..0.025 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_02_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_02 trips_2  (cost=0.28..1262.40 rows=68669 width=52) (actual time=0.022..0.022 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_03_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_03 trips_3  (cost=0.28..1433.01 rows=77493 width=52) (actual time=0.024..0.025 rows=10.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_04_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_04 trips_4  (cost=0.28..1371.50 rows=74067 width=52) (actual time=0.024..0.024 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_05_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_05 trips_5  (cost=0.28..1387.19 rows=75765 width=52) (actual time=0.022..0.022 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_06_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_06 trips_6  (cost=0.28..1371.83 rows=74026 width=52) (actual time=0.024..0.024 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_07_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_07 trips_7  (cost=0.28..1395.41 rows=76254 width=52) (actual time=0.023..0.023 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_08_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_08 trips_8  (cost=0.28..1380.38 rows=74834 width=52) (actual time=0.023..0.023 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_09_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_09 trips_9  (cost=0.28..1365.95 rows=74032 width=52) (actual time=0.022..0.022 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_10_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_10 trips_10  (cost=0.28..1417.25 rows=76341 width=52) (actual time=0.024..0.024 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_11_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_11 trips_11  (cost=0.28..1378.52 rows=74500 width=52) (actual time=0.022..0.022 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_12_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_12 trips_12  (cost=0.28..1425.42 rows=77244 width=52) (actual time=0.021..0.021 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_01_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_01 trips_13  (cost=0.28..1422.31 rows=76907 width=52) (actual time=0.020..0.021 rows=21.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_02_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_02 trips_14  (cost=0.28..1272.40 rows=68927 width=52) (actual time=0.022..0.022 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_03_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_03 trips_15  (cost=0.28..1416.17 rows=77408 width=52) (actual time=0.021..0.022 rows=21.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_04_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_04 trips_16  (cost=0.28..1394.37 rows=75311 width=52) (actual time=0.021..0.021 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_05_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_05 trips_17  (cost=0.28..1419.64 rows=77306 width=52) (actual time=0.020..0.020 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_06_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_06 trips_18  (cost=0.28..1318.68 rows=71074 width=52) (actual time=0.024..0.024 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_default_round_trip_id_city_id_distance_km_fare_amount_idx on trips_default trips_19  (cost=0.12..8.15 rows=1 width=52) (actual time=0.003..0.003 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=6943
+Planning Time: 9.709 ms
+Execution Time: 0.461 ms
+=== R25 run 3 ===
+Limit  (cost=5.55..7.79 rows=50 width=52) (actual time=0.424..0.432 rows=50.00 loops=1)
+  Buffers: shared hit=55
+  ->  Merge Append  (cost=5.55..60154.52 rows=1345726 width=52) (actual time=0.423..0.430 rows=50.00 loops=1)
+        Sort Key: (round((trips.fare_amount / NULLIF(trips.distance_km, '0'::numeric)), 2)) DESC
+        Buffers: shared hit=55
+        ->  Index Only Scan using trips_2025_01_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_01 trips_1  (cost=0.28..1402.17 rows=75567 width=52) (actual time=0.025..0.025 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_02_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_02 trips_2  (cost=0.28..1262.40 rows=68669 width=52) (actual time=0.022..0.022 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_03_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_03 trips_3  (cost=0.28..1433.01 rows=77493 width=52) (actual time=0.024..0.024 rows=10.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_04_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_04 trips_4  (cost=0.28..1371.50 rows=74067 width=52) (actual time=0.024..0.024 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_05_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_05 trips_5  (cost=0.28..1387.19 rows=75765 width=52) (actual time=0.022..0.022 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_06_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_06 trips_6  (cost=0.28..1371.83 rows=74026 width=52) (actual time=0.026..0.026 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_07_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_07 trips_7  (cost=0.28..1395.41 rows=76254 width=52) (actual time=0.023..0.023 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_08_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_08 trips_8  (cost=0.28..1380.38 rows=74834 width=52) (actual time=0.023..0.023 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_09_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_09 trips_9  (cost=0.28..1365.95 rows=74032 width=52) (actual time=0.022..0.022 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_10_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_10 trips_10  (cost=0.28..1417.25 rows=76341 width=52) (actual time=0.024..0.024 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_11_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_11 trips_11  (cost=0.28..1378.52 rows=74500 width=52) (actual time=0.023..0.023 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2025_12_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2025_12 trips_12  (cost=0.28..1425.42 rows=77244 width=52) (actual time=0.023..0.023 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_01_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_01 trips_13  (cost=0.28..1422.31 rows=76907 width=52) (actual time=0.021..0.022 rows=21.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_02_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_02 trips_14  (cost=0.28..1272.40 rows=68927 width=52) (actual time=0.024..0.024 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_03_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_03 trips_15  (cost=0.28..1416.17 rows=77408 width=52) (actual time=0.023..0.024 rows=21.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_04_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_04 trips_16  (cost=0.28..1394.37 rows=75311 width=52) (actual time=0.023..0.023 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_05_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_05 trips_17  (cost=0.28..1419.64 rows=77306 width=52) (actual time=0.022..0.022 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_2026_06_round_trip_id_city_id_distance_km_fare_amount_idx on trips_2026_06 trips_18  (cost=0.28..1318.68 rows=71074 width=52) (actual time=0.025..0.025 rows=1.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Only Scan using trips_default_round_trip_id_city_id_distance_km_fare_amount_idx on trips_default trips_19  (cost=0.12..8.15 rows=1 width=52) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=6943
+Planning Time: 9.682 ms
+Execution Time: 0.474 ms

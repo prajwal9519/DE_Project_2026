@@ -1,0 +1,75 @@
+=== W05 run 1 ===
+Delete on trips  (cost=0.28..246.77 rows=0 width=0) (actual time=23.496..23.497 rows=0.00 loops=1)
+  Delete on trips_2025_01 trips_1
+  Delete on trips_default trips_2
+  Buffers: shared hit=7021 read=10
+  ->  Append  (cost=0.28..246.77 rows=3183 width=10) (actual time=0.212..1.295 rows=3165.00 loops=1)
+        Buffers: shared hit=360 read=10
+        ->  Index Scan using trips_2025_01_requested_at_idx on trips_2025_01 trips_1  (cost=0.28..170.60 rows=3165 width=10) (actual time=0.211..1.171 rows=3165.00 loops=1)
+              Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+              Filter: ((status)::text = ANY ('{CANCELLED_BY_RIDER,CANCELLED_BY_DRIVER}'::text[]))
+              Index Searches: 1
+              Buffers: shared hit=359 read=10
+        ->  Bitmap Heap Scan on trips_default trips_2  (cost=4.14..60.25 rows=18 width=10) (actual time=0.007..0.007 rows=0.00 loops=1)
+              Recheck Cond: ((requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone) AND ((status)::text = ANY ('{CANCELLED_BY_RIDER,CANCELLED_BY_DRIVER}'::text[])))
+              Buffers: shared hit=1
+              ->  Bitmap Index Scan on trips_default_requested_at_idx  (cost=0.00..4.13 rows=18 width=0) (actual time=0.002..0.002 rows=0.00 loops=1)
+                    Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+                    Index Searches: 1
+                    Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=1250
+Planning Time: 1.585 ms
+Trigger for constraint fk_payments_trip_partitioned_1 on trips_2025_01: time=5.669 calls=3165
+Trigger for constraint fk_ratings_trip_partitioned_1 on trips_2025_01: time=5.181 calls=3165
+Execution Time: 34.559 ms
+=== W05 run 2 ===
+Delete on trips  (cost=0.28..246.77 rows=0 width=0) (actual time=1.630..1.630 rows=0.00 loops=1)
+  Delete on trips_2025_01 trips_1
+  Delete on trips_default trips_2
+  Buffers: shared hit=6713
+  ->  Append  (cost=0.28..246.77 rows=3183 width=10) (actual time=0.011..0.898 rows=3165.00 loops=1)
+        Buffers: shared hit=370
+        ->  Index Scan using trips_2025_01_requested_at_idx on trips_2025_01 trips_1  (cost=0.28..170.60 rows=3165 width=10) (actual time=0.011..0.796 rows=3165.00 loops=1)
+              Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+              Filter: ((status)::text = ANY ('{CANCELLED_BY_RIDER,CANCELLED_BY_DRIVER}'::text[]))
+              Index Searches: 1
+              Buffers: shared hit=369
+        ->  Bitmap Heap Scan on trips_default trips_2  (cost=4.14..60.25 rows=18 width=10) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Recheck Cond: ((requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone) AND ((status)::text = ANY ('{CANCELLED_BY_RIDER,CANCELLED_BY_DRIVER}'::text[])))
+              Buffers: shared hit=1
+              ->  Bitmap Index Scan on trips_default_requested_at_idx  (cost=0.00..4.13 rows=18 width=0) (actual time=0.001..0.001 rows=0.00 loops=1)
+                    Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+                    Index Searches: 1
+                    Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=1251
+Planning Time: 1.355 ms
+Trigger for constraint fk_payments_trip_partitioned_1 on trips_2025_01: time=4.862 calls=3165
+Trigger for constraint fk_ratings_trip_partitioned_1 on trips_2025_01: time=4.809 calls=3165
+Execution Time: 11.479 ms
+=== W05 run 3 ===
+Delete on trips  (cost=0.28..246.77 rows=0 width=0) (actual time=1.625..1.626 rows=0.00 loops=1)
+  Delete on trips_2025_01 trips_1
+  Delete on trips_default trips_2
+  Buffers: shared hit=6713
+  ->  Append  (cost=0.28..246.77 rows=3183 width=10) (actual time=0.011..0.910 rows=3165.00 loops=1)
+        Buffers: shared hit=370
+        ->  Index Scan using trips_2025_01_requested_at_idx on trips_2025_01 trips_1  (cost=0.28..170.60 rows=3165 width=10) (actual time=0.011..0.813 rows=3165.00 loops=1)
+              Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+              Filter: ((status)::text = ANY ('{CANCELLED_BY_RIDER,CANCELLED_BY_DRIVER}'::text[]))
+              Index Searches: 1
+              Buffers: shared hit=369
+        ->  Bitmap Heap Scan on trips_default trips_2  (cost=4.14..60.25 rows=18 width=10) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Recheck Cond: ((requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone) AND ((status)::text = ANY ('{CANCELLED_BY_RIDER,CANCELLED_BY_DRIVER}'::text[])))
+              Buffers: shared hit=1
+              ->  Bitmap Index Scan on trips_default_requested_at_idx  (cost=0.00..4.13 rows=18 width=0) (actual time=0.000..0.000 rows=0.00 loops=1)
+                    Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+                    Index Searches: 1
+                    Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=1251
+Planning Time: 1.407 ms
+Trigger for constraint fk_payments_trip_partitioned_1 on trips_2025_01: time=4.894 calls=3165
+Trigger for constraint fk_ratings_trip_partitioned_1 on trips_2025_01: time=4.862 calls=3165
+Execution Time: 11.567 ms

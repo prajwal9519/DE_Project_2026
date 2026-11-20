@@ -1,0 +1,51 @@
+=== R08 run 1 ===
+GroupAggregate  (cost=12560.02..14677.17 rows=76965 width=52) (actual time=20.475..26.488 rows=24.00 loops=1)
+  Group Key: (date_trunc('month'::text, paid_at)), method
+  Buffers: shared hit=7 read=1147, temp read=283 written=284
+  ->  Sort  (cost=12560.02..12752.56 rows=77014 width=18) (actual time=20.192..22.485 rows=77438.00 loops=1)
+        Sort Key: (date_trunc('month'::text, paid_at)), method
+        Sort Method: external merge  Disk: 2264kB
+        Buffers: shared hit=7 read=1147, temp read=283 written=284
+        ->  Index Only Scan using idx_payments_success_paid_at on payments  (cost=0.43..6309.25 rows=77014 width=18) (actual time=0.047..12.123 rows=77438.00 loops=1)
+              Index Cond: ((paid_at >= ('2026-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (paid_at < ('2027-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=1147
+Planning:
+  Buffers: shared hit=202
+Planning Time: 0.365 ms
+Execution Time: 26.974 ms
+=== R08 run 2 ===
+GroupAggregate  (cost=12560.02..14677.17 rows=76965 width=52) (actual time=16.818..22.624 rows=24.00 loops=1)
+  Group Key: (date_trunc('month'::text, paid_at)), method
+  Buffers: shared hit=1154, temp read=283 written=284
+  ->  Sort  (cost=12560.02..12752.56 rows=77014 width=18) (actual time=16.568..18.784 rows=77438.00 loops=1)
+        Sort Key: (date_trunc('month'::text, paid_at)), method
+        Sort Method: external merge  Disk: 2264kB
+        Buffers: shared hit=1154, temp read=283 written=284
+        ->  Index Only Scan using idx_payments_success_paid_at on payments  (cost=0.43..6309.25 rows=77014 width=18) (actual time=0.029..7.365 rows=77438.00 loops=1)
+              Index Cond: ((paid_at >= ('2026-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (paid_at < ('2027-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1148
+Planning:
+  Buffers: shared hit=202
+Planning Time: 0.320 ms
+Execution Time: 23.128 ms
+=== R08 run 3 ===
+GroupAggregate  (cost=12560.02..14677.17 rows=76965 width=52) (actual time=15.589..22.143 rows=24.00 loops=1)
+  Group Key: (date_trunc('month'::text, paid_at)), method
+  Buffers: shared hit=1154, temp read=283 written=284
+  ->  Sort  (cost=12560.02..12752.56 rows=77014 width=18) (actual time=15.330..17.489 rows=77438.00 loops=1)
+        Sort Key: (date_trunc('month'::text, paid_at)), method
+        Sort Method: external merge  Disk: 2264kB
+        Buffers: shared hit=1154, temp read=283 written=284
+        ->  Index Only Scan using idx_payments_success_paid_at on payments  (cost=0.43..6309.25 rows=77014 width=18) (actual time=0.029..7.387 rows=77438.00 loops=1)
+              Index Cond: ((paid_at >= ('2026-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))) AND (paid_at < ('2027-01-01 00:00:00'::timestamp without time zone AT TIME ZONE current_setting('TimeZone'::text))))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1148
+Planning:
+  Buffers: shared hit=202
+Planning Time: 0.421 ms
+Execution Time: 22.608 ms

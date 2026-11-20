@@ -1,0 +1,78 @@
+=== R06 run 1 ===
+Sort  (cost=654.29..654.31 rows=10 width=15) (actual time=2.986..2.987 rows=10.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=5 read=67
+  ->  HashAggregate  (cost=654.02..654.12 rows=10 width=15) (actual time=2.977..2.977 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=2 read=67
+        ->  Hash Join  (cost=1.51..587.82 rows=13241 width=7) (actual time=0.255..2.173 rows=13241.00 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=2 read=67
+              ->  Index Only Scan using trips_2026_06_requested_at_city_id_driver_id_fare_amount_idx on trips_2026_06 t  (cost=0.29..537.11 rows=13241 width=4) (actual time=0.243..1.365 rows=13241.00 loops=1)
+                    Index Cond: ((requested_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=67
+              ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.008..0.008 rows=10.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=11) (actual time=0.004..0.004 rows=10.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=996 read=1
+Planning Time: 1.365 ms
+Execution Time: 3.020 ms
+=== R06 run 2 ===
+Sort  (cost=654.29..654.31 rows=10 width=15) (actual time=2.063..2.063 rows=10.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=72
+  ->  HashAggregate  (cost=654.02..654.12 rows=10 width=15) (actual time=2.055..2.055 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=69
+        ->  Hash Join  (cost=1.51..587.82 rows=13241 width=7) (actual time=0.013..1.268 rows=13241.00 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=69
+              ->  Index Only Scan using trips_2026_06_requested_at_city_id_driver_id_fare_amount_idx on trips_2026_06 t  (cost=0.29..537.11 rows=13241 width=4) (actual time=0.005..0.511 rows=13241.00 loops=1)
+                    Index Cond: ((requested_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=68
+              ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.005..0.005 rows=10.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=11) (actual time=0.002..0.003 rows=10.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=997
+Planning Time: 1.075 ms
+Execution Time: 2.091 ms
+=== R06 run 3 ===
+Sort  (cost=654.29..654.31 rows=10 width=15) (actual time=2.053..2.054 rows=10.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=72
+  ->  HashAggregate  (cost=654.02..654.12 rows=10 width=15) (actual time=2.046..2.047 rows=10.00 loops=1)
+        Group Key: c.city_name
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=69
+        ->  Hash Join  (cost=1.51..587.82 rows=13241 width=7) (actual time=0.013..1.277 rows=13241.00 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=69
+              ->  Index Only Scan using trips_2026_06_requested_at_city_id_driver_id_fare_amount_idx on trips_2026_06 t  (cost=0.29..537.11 rows=13241 width=4) (actual time=0.005..0.511 rows=13241.00 loops=1)
+                    Index Cond: ((requested_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=68
+              ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.005..0.005 rows=10.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities c  (cost=0.00..1.10 rows=10 width=11) (actual time=0.002..0.003 rows=10.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=997
+Planning Time: 1.138 ms
+Execution Time: 2.079 ms
